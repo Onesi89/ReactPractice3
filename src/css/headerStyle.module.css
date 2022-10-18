@@ -1,0 +1,54 @@
+.headerDivContainer {
+    display: flex;
+    background-color: rgb(43, 53, 57);
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    height: 55px;
+}
+
+.headerDivIteams {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    color: white;
+    align-items: center;
+}
+
+.headerLink {
+    text-decoration: none;
+    margin-left: 0.5rem;
+    color: white;
+}
+
+.headerIcon {
+    margin-left: 35px;
+}
+
+.headerSpace {
+    margin-right: 10px;
+}
+
+.headerButton {
+    border-color: rgb(32, 37, 40);
+    background-color: rgb(69, 82, 100);
+    margin-right: 10px;
+    color: white;
+}
+
+.headerRightUl {
+    display: block;
+    list-style-type: disc;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    padding-inline-start: 40px;
+    float: right;
+    margin: 0 25px 0 0;
+}
+
+li {
+    margin-right: 10px;
+    display: inline-block;
+}
