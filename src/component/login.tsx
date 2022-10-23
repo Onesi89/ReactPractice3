@@ -26,7 +26,7 @@ const Login = () => {
         setInfo(prevInfo);
     };
 
-    const Click = async (e: any) => {
+    const Click = async (e:React.MouseEvent) => {
         try {
             e.preventDefault();
             let data = { ...info };
