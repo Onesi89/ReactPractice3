@@ -52,3 +52,12 @@ li {
     margin-right: 10px;
     display: inline-block;
 }
+
+.toggleButton {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    background-color: rgb(100, 109, 123);
+    color: wheat;
+    border: none;
+}
