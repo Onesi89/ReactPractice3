@@ -3,14 +3,19 @@ import styles from '../css/headerStyle.module.css';
 import { useNavigate } from 'react-router-dom';
 import persistStore from 'redux-persist/es/persistStore';
 import store from '../app/reducer';
+import { useDispatch } from 'react-redux';
+import { logout } from '../app/loginSlice';
 
 const Logout = () => {
-    let navigator = useNavigate();
+    const navigate = useNavigate();
+    const dispatch = useDispatch();
+
     const f = async () => {
         let persistor = persistStore(store);
         await persistor.purge();
+        dispatch(logout({}));
         alert('로그아웃이 되었습니다.');
-        navigator('/');
+        navigate('/', { replace: true });
     };
 
     return (

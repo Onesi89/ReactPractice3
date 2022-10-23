@@ -1,0 +1,50 @@
+.loginContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+}
+
+.loginContainer > div {
+    width: 400px;
+    height: 300px;
+    display: flex;
+    justify-content: center;
+    align-self: center;
+    align-items: center;
+    border: 2px solid black;
+    border-radius: 50px;
+}
+
+.tableContainer {
+    margin-top: -60px;
+    margin-bottom: 30px;
+}
+
+.tableContainer thead td {
+    text-align: center;
+    font-size: 25px;
+    height: 100px;
+    font-weight: bold;
+}
+
+.tableContainer tbody td {
+    font-size: 25px;
+}
+
+.input {
+    font-size: 25px;
+}
+
+.buttonContainer {
+    display: flex;
+    justify-content: center;
+}
+
+.buttonContainer > button {
+    font-size: 18px;
+    background-color: palevioletred;
+    color: white;
+    margin-left: 15px;
+    border: none;
+}

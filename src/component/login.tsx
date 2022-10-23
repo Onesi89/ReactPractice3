@@ -1,18 +1,39 @@
-import React, { useState } from 'react';
-import PropTypes from 'prop-types';
-import { instance } from './ajaxRequest/ajaxRequest';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import { update } from '../app/loginSlice';
 import elementSize from '../lib/windowSize';
+import List from './socialLogin/list';
+import styles from '../css/login.module.css';
+import Movemain from './socialLogin/movemain';
+import { useSelector } from 'react-redux';
+
+export type LoginType = {
+    memberID: string;
+    memberPW: string;
+    check: string;
+};
+
+export type SocialLoginType = {
+    email: string;
+    name: string;
+    check: string;
+};
 
 const Login = () => {
-    let [info, setInfo] = useState({ memberID: '', memberPW: '', check: 'false' });
-    let navigate = useNavigate();
+    const loginCheck = useSelector((state: any) => state.value);
+    const navigate = useNavigate();
+    const [info, setInfo] = useState({ memberID: '', memberPW: '', check: 'false' });
     const dispatch = useDispatch();
+
+    useEffect(() => {
+        if (loginCheck?.mnum) {
+            navigate('/main/' + loginCheck.mnum);
+        }
+    }, [loginCheck, navigate]);
+
     const [ewid, ehei] = elementSize({ w: 400, h: 300 });
 
-    const change = (prop: any) => {
+    const change = (prop: React.ChangeEvent<HTMLInputElement>) => {
         let changeInfo = {};
 
         if (prop.target.type === 'text') {
@@ -26,18 +47,11 @@ const Login = () => {
         setInfo(prevInfo);
     };
 
-    const Click = async (e:React.MouseEvent) => {
+    const Click = async (e: React.MouseEvent) => {
         try {
             e.preventDefault();
-            let data = { ...info };
-            let res = await instance.post('http://3.38.19.221:8081/api/login/member', { ...data });
-            let memberInfo = {
-                ...res.data,
-                autorization: res.headers.authorization,
-                refreshtoekn: res.headers.refreshtoken,
-            };
-            dispatch(update(memberInfo));
-            navigate('/main/' + memberInfo.mnum);
+            let data: LoginType = { ...info };
+            await Movemain(data, navigate, dispatch);
         } catch (err) {
             console.log(err);
             alert('아이디 또는 암호를 확인해주세요.');
@@ -46,52 +60,30 @@ const Login = () => {
 
     return (
         <div
+            className={styles.loginContainer}
             style={{
                 width: ewid,
                 height: ehei,
-                display: 'flex',
-                justifyContent: 'center',
-                alignContent: 'center',
             }}
         >
-            <div
-                style={{
-                    width: '400px',
-                    height: '300px',
-                    display: 'flex',
-                    justifyContent: 'center',
-                    alignSelf: 'center',
-                    alignItems: 'center',
-                    border: '2px solid black',
-                    borderRadius: '50px',
-                }}
-            >
+            <div>
                 <form action="post">
-                    <table style={{ marginTop: '-60px', marginBottom: '30px' }}>
+                    <table className={styles.tableContainer}>
                         <thead>
                             <tr>
-                                <td
-                                    colSpan={2}
-                                    style={{
-                                        textAlign: 'center',
-                                        fontSize: '25px',
-                                        height: '100px',
-                                        fontWeight: 'bold',
-                                    }}
-                                >
+                                <td colSpan={2}>
                                     <h2>로그인</h2>
                                 </td>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
-                                <td style={{ fontSize: '25px', width: '50px' }}>
+                                <td style={{ width: '50px' }}>
                                     <span>ID</span>
                                 </td>
                                 <td>
                                     <input
                                         type="text"
-                                        style={{ fontSize: '20px' }}
                                         value={info?.memberID}
                                         onChange={change}
                                         placeholder="아이디를 입력해주세요"
@@ -105,7 +97,6 @@ const Login = () => {
                                 <td>
                                     <input
                                         type="password"
-                                        style={{ fontSize: '20px' }}
                                         value={info?.memberPW}
                                         onChange={change}
                                         placeholder="암호를 입력해주세요"
@@ -114,38 +105,19 @@ const Login = () => {
                             </tr>
                         </tbody>
                     </table>
-                    <div style={{ display: 'flex', justifyContent: 'center' }}>
-                        <button
-                            type="button"
-                            style={{ fontSize: '18px', backgroundColor: 'blue', color: 'white', border: 'none' }}
-                            onClick={(e) => Click(e)}
-                        >
+                    <div className={styles.buttonContainer}>
+                        <button type="button" onClick={(e) => Click(e)}>
                             확인
                         </button>
-                        <button
-                            type="button"
-                            style={{
-                                fontSize: '18px',
-                                backgroundColor: 'blue',
-                                color: 'white',
-                                marginLeft: '15px',
-                                border: 'none',
-                            }}
-                        >
-                            비밀번호찾기
-                        </button>
+                        <button type="button">비밀번호찾기</button>
                     </div>
                 </form>
             </div>
+            <div style={{ marginTop: '10px', width: '400px', height: '100px' }}>
+                <List navigate={navigate} dispatch={dispatch} />
+            </div>
         </div>
     );
-};
-
-Login.propTypes = {
-    info: PropTypes.object,
-    memberID: PropTypes.string,
-    memberPW: PropTypes.string,
-    check: PropTypes.string,
 };
 
 export default Login;

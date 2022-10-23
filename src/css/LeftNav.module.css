@@ -93,3 +93,14 @@
     right: 0;
     z-index: 3;
 }
+
+.toggleButton {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    margin-top: 2px;
+    background-color: rgb(100, 109, 123);
+    color: wheat;
+    align-self: flex-end;
+    border: none;
+}

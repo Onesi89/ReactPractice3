@@ -1,5 +1,5 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState } from 'react';
+import { Link, Outlet } from 'react-router-dom';
 import styles from '../css/headerStyle.module.css';
 import Logout from './Logout';
 import MyInfoAccess from './MyInfoAccess';
@@ -11,6 +11,25 @@ const Headers = () => {
     const memberInfo = useSelector((state: any) => {
         return state.value;
     });
+    const [toggleValue, setToggleValue] = useState({
+        toggle: true,
+        left: '14rem',
+    });
+    const leftNavToggle = () => {
+        let size = { left: '14rem' };
+
+        if (toggleValue.toggle) {
+            size = { left: '3rem' };
+        }
+
+        let toggleButton = {
+            toggle: !toggleValue.toggle,
+            ...size,
+        };
+
+        setToggleValue(toggleButton);
+    };
+
     return (
         <>
             <nav>
@@ -22,9 +41,11 @@ const Headers = () => {
                             width={'30px'}
                             className={styles.headerIcon}
                         />
-                        <Link to={'/main'} className={styles.headerLink}>
-                            <h3>{memberInfo.nickname}</h3>
-                        </Link>
+                        {
+                            <Link to={'/main/' + memberInfo.mnum} className={styles.headerLink}>
+                                <h3>{memberInfo.nickname}</h3>
+                            </Link>
+                        }
                     </div>
                     <div className={styles.headerDivIteams}>
                         <ul className={styles.headerRightUl}>
@@ -38,7 +59,20 @@ const Headers = () => {
                     </div>
                 </div>
             </nav>
-            <LeftNav info={{ ...memberInfo }} />
+            <div style={{ display: 'flex', flexDirection: 'column' }}>
+                {toggleValue.toggle ? (
+                    <LeftNav info={{ ...memberInfo }} leftNavToggle={leftNavToggle} />
+                ) : (
+                    <div style={{ position: 'absolute', zIndex: '5' }}>
+                        <button className={styles.toggleButton} onClick={leftNavToggle}>
+                            <span style={{ fontSize: '20px' }}>{'>>'}</span>
+                        </button>
+                    </div>
+                )}
+                <div style={{ position: 'fixed', left: toggleValue.left }}>
+                    <Outlet />
+                </div>
+            </div>
         </>
     );
 };
