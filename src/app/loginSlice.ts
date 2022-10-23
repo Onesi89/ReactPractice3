@@ -10,7 +10,7 @@ const loginSlice = createSlice({
             state.value = { ...state.value, ...action.payload };
         },
         logout: (state: any, action: any) => {
-            state.value = {};
+            state.value = { ...action.payload };
         },
     },
     extraReducers: (builder) => {

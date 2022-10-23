@@ -3,7 +3,7 @@ import styles from '../css/LeftNav.module.css';
 import '../css/all.css';
 import { useState, useRef } from 'react';
 
-const LeftNav = ({ info }: any) => {
+const LeftNav = ({ info, leftNavToggle }: any) => {
     const focusout = useRef<HTMLInputElement>(null);
     //나중에 useState에 객체 저장
     const Example = (e: React.ChangeEvent<HTMLSelectElement>) => {
@@ -13,6 +13,10 @@ const LeftNav = ({ info }: any) => {
     return (
         <>
             <div className={styles.div}>
+                <button className={styles.toggleButton} onClick={leftNavToggle}>
+                    <span style={{ fontSize: '20px' }}>{'<<'}</span>
+                </button>
+                {/* 숨겼다 펴지는 버튼 */}
                 <div style={{ textAlign: 'center', marginTop: '2rem' }}>
                     <div>
                         {/*로그인 후 사용자 객체 가져온 뒤 출력 예정 */}

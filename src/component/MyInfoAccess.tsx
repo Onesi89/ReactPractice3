@@ -6,7 +6,6 @@ type MyInfoAccessProps = {
 };
 
 const MyInfoAccess: React.FC<MyInfoAccessProps> = ({ memberID }) => {
-    console.log(memberID);
     return (
         <li className={styles.li}>
             <h5>{memberID}</h5>
