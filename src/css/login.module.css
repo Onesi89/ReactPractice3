@@ -1,50 +1,63 @@
 .loginContainer {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-content: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
 }
 
 .loginContainer > div {
-    width: 400px;
-    height: 300px;
-    display: flex;
-    justify-content: center;
-    align-self: center;
-    align-items: center;
-    border: 2px solid black;
-    border-radius: 50px;
+  width: 400px;
+  height: 300px;
+  display: flex;
+  justify-content: center;
+  align-self: center;
+  align-items: center;
+  border: 2px solid black;
+  border-radius: 50px;
 }
 
 .tableContainer {
-    margin-top: -60px;
-    margin-bottom: 30px;
+  margin-top: -20px;
+  margin-bottom: 20px;
 }
 
+/* .tableContainer > thead > tr {
+  color: aqua;
+} */
 .tableContainer thead td {
-    text-align: center;
-    font-size: 25px;
-    height: 100px;
-    font-weight: bold;
+  text-align: center;
+  font-size: 25px;
+  height: 100px;
+  font-weight: bold;
+}
+
+.tableContainer > thead span {
+  font-weight: bolder;
+  font-size: 35px;
 }
 
 .tableContainer tbody td {
-    font-size: 25px;
+  font-size: 25px;
 }
 
 .input {
-    font-size: 25px;
+  font-size: 25px;
 }
 
 .buttonContainer {
-    display: flex;
-    justify-content: center;
+  display: flex;
+  justify-content: center;
 }
 
 .buttonContainer > button {
-    font-size: 18px;
-    background-color: palevioletred;
-    color: white;
-    margin-left: 15px;
-    border: none;
+  font-size: 18px;
+  background-color: palevioletred;
+  color: white;
+  margin-left: 15px;
+  border: none;
+}
+
+p {
+  text-align: center;
+  font-size: 13px;
 }
