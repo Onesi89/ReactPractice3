@@ -9,7 +9,7 @@ const Button = ({ check }: buttonProps) => {
         <button
             type="button"
             disabled={check}
-            style={check ? { backgroundColor: "grey" } : { backgroundColor: "#03c75a" }}
+            style={!check ? { backgroundColor: "grey" } : { backgroundColor: "#03c75a" }}
         >
             인증
         </button>

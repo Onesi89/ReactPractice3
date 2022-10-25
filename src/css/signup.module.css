@@ -31,6 +31,7 @@
 .lineDiv {
     width: 60vw;
     border-top: 1px solid black;
+    margin-top: 20px;
     margin-bottom: 20px;
 }
 
@@ -53,7 +54,7 @@
 
 .signUpdivContainer input:focus {
     display: flex;
-    border: 1px solid blue;
+    border: 1px solid #03c75a;
     border-radius: 10px;
     height: 5vh;
     outline: none;
@@ -89,8 +90,7 @@
     font-size: 2rem;
     display: none;
 }
-.signUpcheckboxDiv {
-}
+
 .signUpcheckboxDiv div {
     display: flex;
     text-align: left;
@@ -107,4 +107,8 @@
     margin-top: 2px;
     width: 19px;
     height: 19px;
+}
+
+button {
+    cursor: pointer;
 }
