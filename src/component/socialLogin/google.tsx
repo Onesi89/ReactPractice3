@@ -1,21 +1,21 @@
-import React, { useEffect } from 'react';
-import { GoogleLogin } from 'react-google-login';
-import { gapi } from 'gapi-script';
-import Movemain, { MoveMainGoogle } from './movemain';
-import { ListProps } from './list';
-import { SocialLoginType } from '../login';
+import React, { useEffect } from "react";
+import { GoogleLogin } from "react-google-login";
+import { gapi } from "gapi-script";
+import Movemain, { MoveMainGoogle } from "./movemain";
+import { ListProps } from "./list";
+import { SocialLoginType } from "../login";
 
-const clientID: string = '761025867741-vp5bsf5pk8s7aglkstlr1uf3gifhrad2.apps.googleusercontent.com';
+const clientID: string = "761025867741-vp5bsf5pk8s7aglkstlr1uf3gifhrad2.apps.googleusercontent.com";
 
 const Google = ({ navigate, dispatch }: ListProps) => {
     useEffect(() => {
         const initClient = () => {
             gapi.client.init({
                 clientId: clientID,
-                scope: 'email',
+                scope: "email",
             });
         };
-        gapi.load('client:auth2', initClient);
+        gapi.load("client:auth2", initClient);
     }, []);
 
     const onSuccess = async (res: any) => {
@@ -23,7 +23,7 @@ const Google = ({ navigate, dispatch }: ListProps) => {
         const memberInfo: SocialLoginType = {
             email: res.profileObj.email,
             name: res.profileObj.name,
-            check: 'false',
+            check: "false",
         };
         // await MoveMainGoogle(memberInfo,navigate,dispatch);
     };
@@ -35,10 +35,10 @@ const Google = ({ navigate, dispatch }: ListProps) => {
         <>
             <GoogleLogin
                 clientId={clientID}
-                buttonText=""
+                buttonText="Google"
                 onSuccess={onSuccess}
                 onFailure={onFailure}
-                cookiePolicy={'single_host_origin'}
+                cookiePolicy={"single_host_origin"}
                 isSignedIn={true}
             />
         </>

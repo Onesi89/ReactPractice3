@@ -1,5 +1,5 @@
-import React from 'react';
-import Google from './google';
+import React from "react";
+import Google from "./google";
 
 export type ListProps = {
     navigate: any;
@@ -11,9 +11,9 @@ const List = ({ navigate, dispatch }: ListProps) => {
         <>
             <ul>
                 <Google navigate={navigate} dispatch={dispatch} />
-                <li>카카오톡</li>
+                {/* <li>카카오톡</li>
                 <li>네이버</li>
-                <li>공동인증서</li>
+                <li>공동인증서</li> */}
             </ul>
         </>
     );

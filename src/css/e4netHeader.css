@@ -1,0 +1,43 @@
+/* .E4netHeaderContainer {
+    text-decoration: none;
+    font-weight: bolder;
+    text-shadow: 1px 1px 2px darkgray;
+} */
+/* .E4netHeaderContainer {
+    background-color: rgb(255, 64, 64);
+    width: 100vw;
+    height: 100px;
+    margin: 0 0 50px 0;
+    padding: 0;
+}
+
+.E4netHeaderContainer img {
+    position: relative;
+    display: inline-block;
+    width: 100px;
+    top: 15px;
+    left: 20px;
+}*/
+
+.E4netHeaderSpan {
+    position: relative;
+    color: white;
+    font-size: 46px;
+    font-weight: bolder;
+    top: 11px;
+    text-shadow: 1px 1px 2px darkgray;
+}
+
+.E4netHeaderNavSpan {
+    position: relative;
+    color: white;
+    font-size: 20px;
+    font-weight: bolder;
+    text-shadow: 1px 1px 2px darkgray;
+    top: 15px;
+}
+/*
+ #basic-navbar-nav {
+    position: relative;
+    left: 800px;
+} */

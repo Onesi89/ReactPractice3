@@ -1,5 +1,6 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import styles from "../../css/countrycode.module.css";
+import useCustomRef from "../../lib/useCustomRef";
 
 // const Countrycode = () => {
 //     return (
@@ -11,7 +12,7 @@ import styles from "../../css/countrycode.module.css";
 // };
 
 const Countrycode = () => {
-    const [open, isOpen] = useState(false);
+    const [open, isOpen] = useState(true);
     const [ro, setRo] = useState("rotate(0deg)");
     const [code, setCode] = useState("대한민국(+82)");
 
@@ -26,35 +27,35 @@ const Countrycode = () => {
         isOpen(!open);
     };
 
+    const outsideRef = useCustomRef(openList);
+
     const selectCode = (data: string) => {
         setCode(data);
         setRo("rotate(0deg)");
-        isOpen(!open);
     };
 
-    function abc(event: MouseEvent) {
-        event.preventDefault();
-        let elname = (event.target as Element).classList;
+    // function abc(event: MouseEvent) {
+    //     event.preventDefault();
+    //     let elname = (event.target as Element).classList;
 
-        if (elname[0] === "nno") {
-        } else {
-            isOpen(false);
-        }
-    }
+    //     if (elname[0] === "nno") {
+    //     } else {
+    //         isOpen(false);
+    //     }
+    // }
 
-    // useEffect(() => {}, [open, ro, code]);
-    useEffect(() => {}, [ro]);
-    useEffect(() => {}, [code]);
+    useEffect(() => {
+        openList();
+    }, [code]);
 
     return (
         <div className={styles.countrycodeContainer}>
             <div>
                 <a
-                    href="#/"
+                    href="#"
                     role="button"
                     onClick={() => {
                         openList();
-                        document.addEventListener("click", abc, false);
                     }}
                     className="nno"
                 >
@@ -68,7 +69,7 @@ const Countrycode = () => {
                     ></img>
                 </a>
                 {open && (
-                    <div className={[styles.countrycodeListDiv, "nno"].join(" ")}>
+                    <div className={[styles.countrycodeListDiv, "nno"].join(" ")} ref={outsideRef}>
                         <ul role="listbox" className="nno">
                             {codeList.map((data, idx) => {
                                 return (
@@ -76,13 +77,12 @@ const Countrycode = () => {
                                         key={idx}
                                         role={"presentation"}
                                         onClick={(e) => {
-                                            e.preventDefault();
                                             selectCode(data);
-                                            document.removeEventListener("click", abc, false);
+                                            isOpen(!false);
                                         }}
                                         className="nno"
                                     >
-                                        <a href="#/" role="option" className="nno">
+                                        <a href="#" role="option" className="nno">
                                             <span className="nno">{data}</span>
                                         </a>
                                     </li>

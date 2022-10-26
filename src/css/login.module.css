@@ -1,63 +1,115 @@
+.loginMainPageImage {
+    position: absolute;
+
+    background-size: cover;
+    width: 100vw;
+    height: 100%;
+    animation: animatedBackground 11s linear infinite alternate;
+}
+
 .loginContainer {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-content: center;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+    min-height: 95vh;
+    animation: animatedBox 3s linear alternate;
+}
+
+@keyframes animatedBox {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 3;
+    }
+}
+
+@keyframes animatedBackground {
+    0% {
+        opacity: 0;
+        background-position: -10% 0;
+    }
+    30% {
+        opacity: 1;
+    }
+    70% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 1;
+        background-position: 10% 0;
+    }
+}
+
+.loginContainer * {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+.loginContainer::-webkit-scrollbar {
+    display: none;
 }
 
 .loginContainer > div {
-  width: 400px;
-  height: 300px;
-  display: flex;
-  justify-content: center;
-  align-self: center;
-  align-items: center;
-  border: 2px solid black;
-  border-radius: 50px;
+    width: 400px;
+    height: 300px;
+    display: flex;
+    justify-content: center;
+    align-self: center;
+    align-items: center;
+    border: 1px solid f5f5f5;
+    box-shadow: 1px 1px 10px 1px black;
+    background-color: #f3f3f3;
 }
 
 .tableContainer {
-  margin-top: -20px;
-  margin-bottom: 20px;
+    margin-top: -20px;
+    margin-bottom: 20px;
 }
 
 /* .tableContainer > thead > tr {
   color: aqua;
 } */
 .tableContainer thead td {
-  text-align: center;
-  font-size: 25px;
-  height: 100px;
-  font-weight: bold;
+    text-align: center;
+    font-size: 25px;
+    height: 100px;
+    font-weight: bold;
 }
 
 .tableContainer > thead span {
-  font-weight: bolder;
-  font-size: 35px;
+    font-weight: bolder;
+    font-size: 40px;
 }
 
-.tableContainer tbody td {
-  font-size: 25px;
+.tableContainer tbody td,
+.tableContainer tbody td span {
+    font-size: 20px;
+    font-weight: bolder;
+    text-shadow: 0.3px 0.3px 0.3px black;
 }
 
 .input {
-  font-size: 25px;
+    font-size: 25px;
 }
 
 .buttonContainer {
-  display: flex;
-  justify-content: center;
+    display: flex;
+    justify-content: center;
 }
 
 .buttonContainer > button {
-  font-size: 18px;
-  background-color: palevioletred;
-  color: white;
-  margin-left: 15px;
-  border: none;
+    font-size: 18px;
+    background-color: rgb(255, 64, 64);
+    color: white;
+    margin-left: 15px;
+    border: none;
+    box-shadow: 0.5px 0.5px 0.5px black;
 }
 
 p {
-  text-align: center;
-  font-size: 13px;
+    text-align: center;
+    font-size: 13px;
 }
