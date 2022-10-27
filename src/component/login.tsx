@@ -40,8 +40,8 @@ const Login = () => {
             setImg(imgList[num]);
         };
 
-        setInterval(imgF, 10000);
-    }, []);
+        setInterval(imgF, 20000);
+    }, [img]);
 
     const change = (prop: React.ChangeEvent<HTMLInputElement>) => {
         let changeInfo = {};
@@ -115,7 +115,7 @@ const Login = () => {
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td>
+                                    <td style={{ width: "50px" }}>
                                         <span
                                             style={{
                                                 color: "rgba(255,64,64)",
@@ -137,12 +137,14 @@ const Login = () => {
                         </table>
                         <div className={styles.buttonContainer}>
                             <button type="submit" onClick={(e) => Click(e)}>
-                                확인
+                                로그인
                             </button>
-                            <button type="button">비밀번호찾기</button>
+                            <button type="button" style={{ fontSize: "15px" }}>
+                                비밀번호찾기
+                            </button>
                         </div>
-                        <p>
-                            아직 회원이 아니십니까?<Link to={"/signUp"}> 회원가입</Link>
+                        <p style={{ marginTop: "20px" }}>
+                            아직 회원이 아니십니까? <Link to={"/signUp"}>회원가입</Link>
                         </p>
                     </form>
                 </div>

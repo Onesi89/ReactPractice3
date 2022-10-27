@@ -5,6 +5,9 @@ import Login from "./component/login";
 import { useSelector } from "react-redux";
 import Main from "./component/Main";
 import SignUp from "./component/signUp/signUp";
+import MoneyCharge from "./component/service/MoneyCharge";
+import Payment from "./component/service/Payment";
+import Transaction from "./component/service/Transaction";
 
 const App: React.FC = () => {
     let loginCheck = useSelector((state: any) => {
@@ -28,7 +31,11 @@ const App: React.FC = () => {
             <Routes>
                 <Route path="/" element={<Login />} />
                 <Route path="/main" element={<Headers />}>
-                    <Route path=":member" element={<Main />} />
+                    <Route path="/main/member" element={<Main />} />
+                    <Route path="/main/editMemberInfo" element={<SignUp />} />
+                    <Route path="/main/moneyCharge" element={<MoneyCharge />} />
+                    <Route path="/main/payment" element={<Payment />} />
+                    <Route path="/main/transation" element={<Transaction />} />
                 </Route>
             </Routes>
         </BrowserRouter>

@@ -13,6 +13,8 @@
     justify-content: flex-start;
     color: white;
     align-items: center;
+    text-shadow: 1px 1px 1px black;
+    cursor: pointer;
 }
 
 .headerLink {

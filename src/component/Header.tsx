@@ -1,11 +1,15 @@
-import React, { useState } from 'react';
-import { Link, Outlet } from 'react-router-dom';
-import styles from '../css/headerStyle.module.css';
-import Logout from './Logout';
-import MyInfoAccess from './MyInfoAccess';
-import Tok from './Tok';
-import LeftNav from './LeftNav';
-import { useSelector } from 'react-redux';
+import React, { useEffect, useState } from "react";
+import { Link, Outlet } from "react-router-dom";
+import styles from "../css/headerStyle.module.css";
+import Logout from "./Logout";
+import MyInfoAccess from "./MyInfoAccess";
+import Tok from "./Tok";
+import LeftNav from "./LeftNav";
+import { useSelector } from "react-redux";
+import { Container, Nav, Navbar } from "react-bootstrap";
+import Leftnav2 from "./Leftnav2";
+import { FaArrowRight } from "react-icons/fa";
+import { relative } from "path";
 
 const Headers = () => {
     const memberInfo = useSelector((state: any) => {
@@ -13,13 +17,14 @@ const Headers = () => {
     });
     const [toggleValue, setToggleValue] = useState({
         toggle: true,
-        left: '14rem',
+        left: "130px",
     });
+
     const leftNavToggle = () => {
-        let size = { left: '14rem' };
+        let size = { left: "150px" };
 
         if (toggleValue.toggle) {
-            size = { left: '3rem' };
+            size = { left: "320px" };
         }
 
         let toggleButton = {
@@ -32,47 +37,49 @@ const Headers = () => {
 
     return (
         <>
-            <nav>
-                <div className={styles.headerDivContainer}>
-                    <div className={styles.headerDivIteams}>
-                        <img
-                            src="../img/headerIcon.png"
-                            alt="그림입니다."
-                            width={'30px'}
-                            className={styles.headerIcon}
-                        />
-                        {
-                            <Link to={'/main/' + memberInfo.mnum} className={styles.headerLink}>
-                                <h3>{memberInfo.nickname}</h3>
-                            </Link>
-                        }
-                    </div>
-                    <div className={styles.headerDivIteams}>
-                        <ul className={styles.headerRightUl}>
-                            <MyInfoAccess memberID={memberInfo.memberID} />
+            <Navbar style={{ backgroundColor: "rgb(255,64,64)" }} variant="dark" expand="lg">
+                <Container fluid>
+                    <Navbar.Brand href="/">
+                        <img src=".././img/logo1.png" width={"100px"}></img>
+                        <span className="E4netHeaderSpan">CardSystem</span>
+                    </Navbar.Brand>
+                    <Navbar.Toggle aria-controls="basic-navbar-nav" />
+                    <Navbar.Collapse id="basic-navbar-nav">
+                        <Nav className="justify-content-end flex-grow-1 pe-3">
+                            {/* 내정보 이동하기 */}
+                            <Nav.Link href="/">
+                                <span className={styles.headerDivIteams}>{memberInfo.memberID}</span>
+                            </Nav.Link>
                             <Logout />
-                            <li>
-                                <h5 className={styles.headerSpace}>도움말</h5>
-                            </li>
-                            <Tok />
-                        </ul>
-                    </div>
-                </div>
-            </nav>
-            <div style={{ display: 'flex', flexDirection: 'column' }}>
+                            <Nav.Link href="">
+                                <span className={styles.headerDivIteams}>도움말</span>
+                            </Nav.Link>
+                            {/* 톡톡상담 나중에 */}
+                            {/* <Tok /> */}
+                        </Nav>
+                    </Navbar.Collapse>
+                </Container>
+            </Navbar>
+            <Leftnav2 leftNavToggle={leftNavToggle} />
+            <div style={{ position: "absolute", top: "120px", left: toggleValue.left, color: "black" }}>
+                <Outlet />
+            </div>
+
+            {/* 혼자만든 커스텀메뉴
+             <div style={{ display: "flex", flexDirection: "column" }}>
                 {toggleValue.toggle ? (
                     <LeftNav info={{ ...memberInfo }} leftNavToggle={leftNavToggle} />
                 ) : (
-                    <div style={{ position: 'absolute', zIndex: '5' }}>
+                    <div style={{ position: "absolute", zIndex: "5" }}>
                         <button className={styles.toggleButton} onClick={leftNavToggle}>
-                            <span style={{ fontSize: '20px' }}>{'>>'}</span>
+                            <span style={{ fontSize: "20px" }}>{">>"}</span>
                         </button>
                     </div>
                 )}
-                <div style={{ position: 'fixed', left: toggleValue.left }}>
+                <div style={{ position: "fixed", left: toggleValue.left }}>
                     <Outlet />
                 </div>
-            </div>
+            </div> */}
         </>
     );
 };

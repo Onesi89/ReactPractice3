@@ -1,22 +1,18 @@
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useState, useEffect } from "react";
 import styles from "../../css/countrycode.module.css";
 import useCustomRef from "../../lib/useCustomRef";
 
-// const Countrycode = () => {
-//     return (
-//         <select className={styles.countrycodeContainer}>
-//             <option value="">대한민국(+82)</option>
-//             <option value="">미국(+1)</option>
-//         </select>
-//     );
-// };
-
-const Countrycode = () => {
+type CustomSelectBoxProps = {
+    propF?: Function;
+    dataList?: string[];
+    width?: string;
+    height?: string;
+    superName?: string;
+};
+const CustomSelectBox = ({ dataList = ["010", "011", "070"], width = "80px", height = "100%", superName = "none" }) => {
     const [open, isOpen] = useState(true);
     const [ro, setRo] = useState("rotate(0deg)");
-    const [code, setCode] = useState("대한민국(+82)");
-
-    const codeList: string[] = ["대한민국(+82)", "미국(+1)", "중국(+86)", "일본(+81)"];
+    const [code, setCode] = useState(dataList[0]);
 
     const openList = () => {
         if (!open) {
@@ -27,63 +23,56 @@ const Countrycode = () => {
         isOpen(!open);
     };
 
-    const outsideRef = useCustomRef(openList);
+    const outsideRef = useCustomRef(openList, superName);
 
     const selectCode = (data: string) => {
         setCode(data);
         setRo("rotate(0deg)");
     };
 
-    // function abc(event: MouseEvent) {
-    //     event.preventDefault();
-    //     let elname = (event.target as Element).classList;
-
-    //     if (elname[0] === "nno") {
-    //     } else {
-    //         isOpen(false);
-    //     }
-    // }
-
     useEffect(() => {
         openList();
-    }, [code]);
+    }, []);
 
     return (
-        <div className={styles.countrycodeContainer}>
+        <div className={styles.countrycodeContainer} style={{ width }}>
             <div>
                 <a
-                    href="#"
                     role="button"
                     onClick={() => {
                         openList();
                     }}
-                    className="nno"
+                    className={superName}
                 >
-                    <span style={{ display: "inline-block" }} className="nno">
+                    <span style={{ display: "inline-block", paddingLeft: "3px" }} className={superName}>
                         {code}
                     </span>
                     <img
-                        style={{ display: "inline-block", transform: ro }}
+                        style={{ display: "inline-block", transform: ro, zIndex: -1 }}
                         src="https://accounts.commerce.naver.com/static/media/icon-fold-16.f93fa38d.svg"
                         alt=" "
                     ></img>
                 </a>
                 {open && (
-                    <div className={[styles.countrycodeListDiv, "nno"].join(" ")} ref={outsideRef}>
-                        <ul role="listbox" className="nno">
-                            {codeList.map((data, idx) => {
+                    <div className={[styles.countrycodeListDiv, { superName }].join(" ")} ref={outsideRef}>
+                        <ul
+                            role="listbox"
+                            className={superName}
+                            style={{ width: "100%", cursor: "pointer", height: height, overflow: "hidden" }}
+                        >
+                            {dataList.map((data, idx) => {
                                 return (
                                     <li
                                         key={idx}
                                         role={"presentation"}
                                         onClick={(e) => {
                                             selectCode(data);
-                                            isOpen(!false);
+                                            isOpen(false);
                                         }}
-                                        className="nno"
+                                        className={superName}
                                     >
-                                        <a href="#" role="option" className="nno">
-                                            <span className="nno">{data}</span>
+                                        <a role="option" className={superName}>
+                                            <span>{data}</span>
                                         </a>
                                     </li>
                                 );
@@ -96,4 +85,4 @@ const Countrycode = () => {
     );
 };
 
-export default Countrycode;
+export default CustomSelectBox;

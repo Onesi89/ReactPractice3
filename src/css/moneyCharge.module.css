@@ -1,0 +1,65 @@
+.moneychargeContainer {
+    padding: 0;
+    width: 80vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 20vw;
+}
+.moneychargeContainer header {
+    display: block;
+    width: 80vw;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    align-self: start;
+    font-size: 25px;
+    font-weight: bolder;
+    margin-bottom: 25px;
+    min-width: 20vw;
+    padding: 10px;
+}
+
+.moneychargeContainer > div {
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    width: 80vw;
+    font-size: 20px;
+    display: flex;
+    flex-direction: column;
+    align-self: center;
+    min-width: 20vw;
+}
+
+.items {
+    display: flex;
+    flex-direction: row;
+    padding-left: 50px;
+    margin: 10px;
+    /* align-self: start; */
+}
+
+.items:nth-child(n) {
+    border-bottom: 1px solid pink;
+}
+
+.items div:nth-child(1) {
+    width: 200px;
+    margin-right: 30px;
+}
+
+.moneychargeContainer input[type="text"] {
+    border: none;
+    background-color: transparent;
+}
+
+.moneychargeContainer input[type="number"] {
+    position: relative;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 2px 2px;
+    border: 0px;
+    top: -4px;
+}
+
+.moneychargeContainer button {
+    border: none;
+    background-color: rgb(255, 64, 64);
+    color: whitesmoke;
+}

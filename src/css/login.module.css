@@ -1,10 +1,9 @@
 .loginMainPageImage {
     position: absolute;
-
     background-size: cover;
     width: 100vw;
     height: 100%;
-    animation: animatedBackground 11s linear infinite alternate;
+    animation: animatedBackground 20s linear infinite;
 }
 
 .loginContainer {
@@ -28,7 +27,7 @@
 
 @keyframes animatedBackground {
     0% {
-        opacity: 0;
+        opacity: 0.2;
         background-position: -10% 0;
     }
     30% {
@@ -38,7 +37,7 @@
         opacity: 1;
     }
     100% {
-        opacity: 1;
+        opacity: 0.2;
         background-position: 10% 0;
     }
 }
@@ -91,8 +90,9 @@
     text-shadow: 0.3px 0.3px 0.3px black;
 }
 
-.input {
-    font-size: 25px;
+.loginContainer input {
+    font-size: 15px;
+    width: 98%;
 }
 
 .buttonContainer {

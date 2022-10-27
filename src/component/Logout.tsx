@@ -1,12 +1,16 @@
-import React from 'react';
-import styles from '../css/headerStyle.module.css';
-import { useNavigate } from 'react-router-dom';
-import persistStore from 'redux-persist/es/persistStore';
-import store from '../app/reducer';
-import { useDispatch } from 'react-redux';
-import { logout } from '../app/loginSlice';
+import React from "react";
+import styles from "../css/headerStyle.module.css";
+import { useNavigate } from "react-router-dom";
+import persistStore from "redux-persist/es/persistStore";
+import store from "../app/reducer";
+import { useDispatch } from "react-redux";
+import { logout } from "../app/loginSlice";
 
-const Logout = () => {
+type LogoutProp = {
+    style?: string[];
+};
+
+const Logout: React.FC<LogoutProp> = ({ style }) => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
 
@@ -14,14 +18,14 @@ const Logout = () => {
         let persistor = persistStore(store);
         await persistor.purge();
         dispatch(logout({}));
-        alert('로그아웃이 되었습니다.');
-        navigate('/', { replace: true });
+        alert("로그아웃이 되었습니다.");
+        navigate("/", { replace: true });
     };
 
     return (
-        <li className={styles.li}>
-            <h5 onClick={f}>로그아웃</h5>
-        </li>
+        <span className={styles.headerDivIteams} onClick={f}>
+            로그아웃
+        </span>
     );
 };
 

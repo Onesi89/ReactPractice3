@@ -1,0 +1,36 @@
+.leftnav2Container,
+.leftnav2Container * {
+    overflow: hidden;
+}
+
+.leftnav2Container,
+.leftnav2Container * :hover {
+    color: black;
+}
+
+.leftnav2Menu :hover {
+    background-color: rgb(250, 237, 237);
+}
+
+.leftnav2Container {
+    display: flex;
+    height: 100vh;
+}
+
+.leftnav2Container > main > button {
+    border: none;
+    background-color: #ffffff;
+    font-size: 1.5rem;
+}
+
+.leftnav2SuperMenu {
+}
+
+.leftnav2SuperMenu:before {
+    content: "";
+    position: absolute;
+    left: 10px;
+    bottom: 0;
+    width: 90%;
+    border-bottom: 2px solid rgb(236, 8, 8);
+}

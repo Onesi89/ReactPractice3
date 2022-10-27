@@ -3,6 +3,7 @@
     margin: 0 auto;
     padding: 0px;
     word-wrap: break-word;
+    text-decoration: none;
 }
 
 .btnTd {
@@ -11,7 +12,7 @@
 
 .signUpdivContainer {
     display: flex;
-    width: 100vw;
+    width: 40%;
     flex-direction: column;
     justify-content: center;
     align-content: center;
@@ -25,11 +26,11 @@
 }
 
 .signUpdivContainer table {
-    width: 50vw;
+    width: 100%;
 }
 
 .lineDiv {
-    width: 60vw;
+    width: 100%;
     border-top: 1px solid black;
     margin-top: 20px;
     margin-bottom: 20px;
@@ -112,3 +113,31 @@
 .signUpdivContainer button {
     cursor: pointer;
 }
+
+.signUpdivContainer input:read-only {
+    background-color: darkgray;
+}
+
+.signUpdivContainer input:read-only:focus {
+    border-color: darkgray;
+}
+
+#listData {
+    width: 1000%;
+    cursor: pointer;
+    overflow: none;
+}
+
+.signUpspanline {
+    width: 50px;
+    display: inline-block;
+    font-size: 30px !important;
+    text-align: center;
+}
+/* 
+.signUpdivPhone,
+.signUpdivPhone * {
+    display: flex;
+    flex-direction: row;
+    align-content: center;
+} */
