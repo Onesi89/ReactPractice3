@@ -63,3 +63,86 @@
     background-color: rgb(255, 64, 64);
     color: whitesmoke;
 }
+
+.moneychargeTable {
+    height: 50px;
+    display: flex;
+    align-content: center;
+}
+.moneychargeTable,
+.moneychargeTable > div {
+    display: flex;
+    flex-direction: row !important;
+    font-size: 17px;
+    align-self: center;
+    justify-content: space-around;
+    /* width: 100%; */
+}
+
+.moneychargeTable > div input {
+    border: 1px solid grey !important;
+    text-align: center;
+    align-self: center;
+}
+
+.moneychargeTable span {
+    display: inline-block;
+    font-weight: bolder;
+    align-self: center;
+    font-size: 17px;
+    margin-left: 20px;
+    margin-right: 20px;
+    width: 100px;
+}
+
+.moneychargeTable svg {
+    font-size: 30px;
+    margin-left: 10px;
+    margin-right: 20px;
+}
+
+@media (min-width: 550px) {
+    .moneychargeContainer > div,
+    .moneychargeContainer > header {
+        max-width: 60vw !important;
+    }
+    /* .moneychargeTable > div > span {
+        display: none !important;
+    } */
+}
+
+@media (max-width: 1200px) {
+    .moneychargeContainer > div {
+        max-width: 60vw !important;
+    }
+
+    .moneychargeContainer thead {
+        font-size: 0.6rem;
+    }
+    .moneychargeContainer > header {
+        max-width: 60vw !important;
+        margin-left: 10vw;
+    }
+    .moneychargeTable > div > span,
+    .moneychargeTable > div input {
+        display: none;
+    }
+}
+
+@media (max-width: 1390px) {
+    .moneychargeTable > div > span,
+    .moneychargeTable > div input {
+        display: none;
+    }
+
+    .moneychargeTable > div > label > svg {
+        font-size: 5rem;
+    }
+}
+
+@media (min-width: 1400px) {
+    .moneychargeContainer > header,
+    .moneychargeContainer > div {
+        max-width: 80vw !important;
+    }
+}

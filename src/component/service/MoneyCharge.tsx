@@ -7,7 +7,8 @@ const MoneyCharge = () => {
     return (
         <>
             <TopBanner>
-                <GrTransaction /> 서비스 {">"} 머니충전
+                <GrTransaction />
+                &nbsp;서비스 {">"} 머니충전
             </TopBanner>
             <article className={styles.moneychargeContainer}>
                 <header>

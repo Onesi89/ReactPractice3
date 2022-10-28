@@ -10,7 +10,7 @@ const Payment = () => {
         <>
             <TopBanner>
                 <GrTransaction />
-                서비스 {">"} 머니결제
+                &nbsp;서비스 {">"} 머니결제
             </TopBanner>
             <article className={styles.moneychargeContainer}>
                 <header>

@@ -11,6 +11,21 @@ import Leftnav2 from "./Leftnav2";
 import { FaArrowRight } from "react-icons/fa";
 import { relative } from "path";
 
+const leftNavToggle = (toggleValue: any, setToggleValue: any) => {
+    let size = { left: "150px" };
+
+    if (toggleValue.toggle) {
+        size = { left: "320px" };
+    }
+
+    let toggleButton = {
+        toggle: !toggleValue.toggle,
+        ...size,
+    };
+
+    setToggleValue(toggleButton);
+};
+
 const Headers = () => {
     const memberInfo = useSelector((state: any) => {
         return state.value;
@@ -20,20 +35,9 @@ const Headers = () => {
         left: "130px",
     });
 
-    const leftNavToggle = () => {
-        let size = { left: "150px" };
-
-        if (toggleValue.toggle) {
-            size = { left: "320px" };
-        }
-
-        let toggleButton = {
-            toggle: !toggleValue.toggle,
-            ...size,
-        };
-
-        setToggleValue(toggleButton);
-    };
+    useEffect(() => {
+        leftNavToggle(toggleValue, setToggleValue);
+    }, []);
 
     return (
         <>
@@ -60,7 +64,7 @@ const Headers = () => {
                     </Navbar.Collapse>
                 </Container>
             </Navbar>
-            <Leftnav2 leftNavToggle={leftNavToggle} />
+            <Leftnav2 leftNavToggle={() => leftNavToggle(toggleValue, setToggleValue)} />
             <div style={{ position: "absolute", top: "120px", left: toggleValue.left, color: "black" }}>
                 <Outlet />
             </div>
