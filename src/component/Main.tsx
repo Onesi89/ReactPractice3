@@ -1,19 +1,23 @@
 import React, { useEffect, useState } from "react";
-import { Link, Outlet } from "react-router-dom";
 
 const Main = () => {
     const [loading, setLoading] = useState(true);
+    console.log("Main 컴포넌트 로딩 시작");
+    console.log(loading);
 
     useEffect(() => {
+        console.log("Main 컴포넌트 로딩 끝");
         setLoading(false);
+        console.log("Main 컴포넌트 useEffect 끝");
     }, []);
 
     if (loading) {
-        <>
-            <h2>로딩중입니다.</h2>
-        </>;
+        return (
+            <>
+                <h2>로딩중입니다.</h2>
+            </>
+        );
     }
-
     return (
         <>
             <h2>안녕하세요</h2>

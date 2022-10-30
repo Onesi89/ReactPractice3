@@ -1,43 +1,40 @@
 import React, { useEffect, useState } from "react";
-import { Link, Outlet } from "react-router-dom";
+import { Outlet } from "react-router-dom";
 import styles from "../css/headerStyle.module.css";
 import Logout from "./Logout";
-import MyInfoAccess from "./MyInfoAccess";
-import Tok from "./Tok";
-import LeftNav from "./LeftNav";
 import { useSelector } from "react-redux";
 import { Container, Nav, Navbar } from "react-bootstrap";
 import Leftnav2 from "./Leftnav2";
-import { FaArrowRight } from "react-icons/fa";
-import { relative } from "path";
+import { LinkContainer } from "react-router-bootstrap";
 
-const leftNavToggle = (toggleValue: any, setToggleValue: any) => {
-    let size = { left: "150px" };
+// const leftNavToggle = (toggleValue: any, setToggleValue: any) => {
+//     let size = { left: "150px" };
 
-    if (toggleValue.toggle) {
-        size = { left: "320px" };
-    }
+//     if (toggleValue.toggle) {
+//         size = { left: "320px" };
+//     }
 
-    let toggleButton = {
-        toggle: !toggleValue.toggle,
-        ...size,
-    };
+//     let toggleButton = {
+//         toggle: !toggleValue.toggle,
+//         ...size,
+//     };
 
-    setToggleValue(toggleButton);
-};
+//     setToggleValue(toggleButton);
+// };
 
 const Headers = () => {
+    console.log("Header 렌더링 시작");
     const memberInfo = useSelector((state: any) => {
         return state.value;
     });
-    const [toggleValue, setToggleValue] = useState({
-        toggle: true,
-        left: "130px",
-    });
+    // const [toggleValue, setToggleValue] = useState({
+    //     toggle: true,
+    //     left: "130px",
+    // });
 
-    useEffect(() => {
-        leftNavToggle(toggleValue, setToggleValue);
-    }, []);
+    // useEffect(() => {
+    //     leftNavToggle(toggleValue, setToggleValue);
+    // }, []);
 
     return (
         <>
@@ -51,23 +48,25 @@ const Headers = () => {
                     <Navbar.Collapse id="basic-navbar-nav">
                         <Nav className="justify-content-end flex-grow-1 pe-3">
                             {/* 내정보 이동하기 */}
-                            <Nav.Link href="/">
+                            <LinkContainer to="/">
                                 <span className={styles.headerDivIteams}>{memberInfo.memberID}</span>
-                            </Nav.Link>
+                            </LinkContainer>
                             <Logout />
-                            <Nav.Link href="">
+                            <LinkContainer to="/main/payment">
                                 <span className={styles.headerDivIteams}>도움말</span>
-                            </Nav.Link>
+                            </LinkContainer>
                             {/* 톡톡상담 나중에 */}
                             {/* <Tok /> */}
                         </Nav>
                     </Navbar.Collapse>
                 </Container>
             </Navbar>
-            <Leftnav2 leftNavToggle={() => leftNavToggle(toggleValue, setToggleValue)} />
-            <div style={{ position: "absolute", top: "120px", left: toggleValue.left, color: "black" }}>
+            <Leftnav2 />
+
+            {/* <Leftnav2 leftNavToggle={() => leftNavToggle(toggleValue, setToggleValue)} /> */}
+            {/* <div style={{ position: "absolute", top: "120px", left: toggleValue.left, color: "black" }}>
                 <Outlet />
-            </div>
+            </div> */}
 
             {/* 혼자만든 커스텀메뉴
              <div style={{ display: "flex", flexDirection: "column" }}>

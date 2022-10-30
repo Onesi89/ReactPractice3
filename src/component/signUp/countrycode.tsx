@@ -1,15 +1,25 @@
 import React, { useState, useEffect } from "react";
 import styles from "../../css/countrycode.module.css";
 import useCustomRef from "../../lib/useCustomRef";
+import ShowInput from "../../prjFunction/showInput";
 
 type CustomSelectBoxProps = {
-    propF?: Function;
     dataList?: string[];
     width?: string;
     height?: string;
     superName?: string;
+    boxF?: Function;
 };
-const CustomSelectBox = ({ dataList = ["010", "011", "070"], width = "80px", height = "100%", superName = "none" }) => {
+
+export type { CustomSelectBoxProps };
+
+function CustomSelectBox({
+    dataList = ["010", "011", "070"],
+    width = "80px",
+    height = "100%",
+    superName = "none",
+    boxF,
+}: CustomSelectBoxProps) {
     const [open, isOpen] = useState(true);
     const [ro, setRo] = useState("rotate(0deg)");
     const [code, setCode] = useState(dataList[0]);
@@ -65,14 +75,22 @@ const CustomSelectBox = ({ dataList = ["010", "011", "070"], width = "80px", hei
                                     <li
                                         key={idx}
                                         role={"presentation"}
-                                        onClick={(e) => {
+                                        onClick={(e: React.MouseEvent) => {
                                             selectCode(data);
                                             isOpen(false);
+                                            if (boxF !== undefined) {
+                                                boxF(e);
+                                            }
+                                            return;
                                         }}
                                         className={superName}
                                     >
-                                        <a role="option" className={superName}>
-                                            <span>{data}</span>
+                                        <a
+                                            role="option"
+                                            className={superName}
+                                            style={{ display: "inline-block", width: "100%" }}
+                                        >
+                                            <span style={{ display: "inline-block", width: "100%" }}>{data}</span>
                                         </a>
                                     </li>
                                 );
@@ -83,6 +101,6 @@ const CustomSelectBox = ({ dataList = ["010", "011", "070"], width = "80px", hei
             </div>
         </div>
     );
-};
+}
 
 export default CustomSelectBox;

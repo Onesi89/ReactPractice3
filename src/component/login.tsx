@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import elementSize from "../lib/windowSize";
 import List from "./socialLogin/list";
 import styles from "../css/login.module.css";
 import Movemain from "./socialLogin/movemain";
@@ -127,6 +126,7 @@ const Login = () => {
                                     <td>
                                         <input
                                             type="password"
+                                            autoComplete="off"
                                             value={info?.memberPW}
                                             onChange={change}
                                             placeholder="암호를 입력해주세요"

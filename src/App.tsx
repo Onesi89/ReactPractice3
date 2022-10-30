@@ -8,6 +8,7 @@ import SignUp from "./component/signUp/signUp";
 import MoneyCharge from "./component/service/MoneyCharge";
 import Payment from "./component/service/Payment";
 import Transaction from "./component/service/Transaction";
+import Test from "./component/test";
 
 const App: React.FC = () => {
     let loginCheck = useSelector((state: any) => {
@@ -20,6 +21,7 @@ const App: React.FC = () => {
                 <Routes>
                     <Route path="/" element={<Login />} />
                     <Route path="/signUp" element={<SignUp />} />
+                    <Route path="/main/test" element={<Test />}></Route>
                     <Route path="*" element={<div>로그인이 필요한 서비스입니다.</div>} />
                 </Routes>
             </BrowserRouter>
