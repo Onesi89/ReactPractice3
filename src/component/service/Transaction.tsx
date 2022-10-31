@@ -75,7 +75,8 @@ const Payment = () => {
                 </div>
                 <TransactionTable
                     header={["일자", "처리구분", "결제수단", "상품명", "가맹점명", "처리금액", "처리상태"]}
-                    data={["2020.07.02", "결제", "카드", "-", "여의도", "11,900원", ""]}
+                    data={[["2020.07.02", "결제", "카드", "-", "여의도", "11,900원", ""], []]}
+                    tableClassName={styles.transactionTable}
                 />
             </article>
         </>

@@ -5,7 +5,11 @@ import TopBanner from "../../lib/topBanner";
 import { MdPayment } from "react-icons/md";
 import CustomSelectBox from "../signUp/countrycode";
 
+const cdbreact = require("cdbreact");
+
 const Payment = () => {
+    console.log("머니결제 시작");
+    const { CDBTable, CDBTableHeader, CDBTableBody, CDBContainer } = cdbreact;
     return (
         <>
             <TopBanner>
@@ -17,13 +21,68 @@ const Payment = () => {
                     <MdPayment />
                     <span>&nbsp;&nbsp;머니 결제</span>
                 </header>
-                <div>
+                <CDBContainer>
+                    <CDBTable striped hover responsiveMd className={styles.MoneyChargeTable}>
+                        <CDBTableHeader>
+                            <tr>
+                                <th>계정명</th>
+
+                                <th>선택</th>
+                            </tr>
+                        </CDBTableHeader>
+                        <CDBTableBody>
+                            <tr>
+                                <td>가&nbsp;&nbsp;맹&nbsp;&nbsp;점</td>
+                                <td>
+                                    <CustomSelectBox dataList={["A지점", "B지점"]} superName={"payment1"} />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>구매물품</td>
+                                <td>
+                                    <CustomSelectBox dataList={["A물품", "B물품"]} superName={"payment2"} />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style={{}}>결제금액</td>
+                                <td>
+                                    <input type="number" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>결제수단</td>
+                                <td>
+                                    <CustomSelectBox
+                                        dataList={["선불머니", "카드", "계좌이체"]}
+                                        superName={"payment3"}
+                                    />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td
+                                    colSpan={2}
+                                    style={{
+                                        borderBottom: "none",
+                                        marginTop: "20",
+                                        backgroundColor: "white",
+                                    }}
+                                >
+                                    <button type="button" style={{ margin: "0 auto" }}>
+                                        결제하기
+                                    </button>
+                                </td>
+                            </tr>
+                        </CDBTableBody>
+                    </CDBTable>
+                </CDBContainer>
+
+                {/* <div>
                     <div className={styles.items}>
                         <div>이름</div>
                         <div>선택</div>
                     </div>
                     <div className={styles.items}>
-                        <div>가&nbsp;맹&nbsp;점</div>
+                        <div>가&nbsp;&nbsp;맹&nbsp;&nbsp;점</div>
                         <CustomSelectBox dataList={["A지점", "B지점"]} height={"80%"} superName={"payment1"} />
                     </div>
                     <div className={styles.items}>
@@ -47,7 +106,7 @@ const Payment = () => {
                     <div className={styles.items} style={{ borderBottom: "none" }}>
                         <button type="button">결제하기</button>
                     </div>
-                </div>
+                </div> */}
             </article>
         </>
     );

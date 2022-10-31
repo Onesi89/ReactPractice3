@@ -22,7 +22,7 @@ function CustomSelectBox({
 }: CustomSelectBoxProps) {
     const [open, isOpen] = useState(true);
     const [ro, setRo] = useState("rotate(0deg)");
-    const [code, setCode] = useState(dataList[0]);
+    const [code, setCode] = useState("");
 
     const openList = () => {
         if (!open) {
@@ -41,6 +41,7 @@ function CustomSelectBox({
     };
 
     useEffect(() => {
+        setCode(dataList[0]);
         openList();
     }, []);
 

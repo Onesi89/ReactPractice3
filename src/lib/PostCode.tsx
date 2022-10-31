@@ -2,11 +2,16 @@ import React from "react";
 import { useDaumPostcodePopup } from "react-daum-postcode";
 import Button from "../component/signUp/button";
 
-const Postcode = () => {
+type PostCodeProps = {
+    btnF: Function;
+};
+
+const Postcode = ({ btnF }: PostCodeProps) => {
     const open = useDaumPostcodePopup();
 
     const handleComplete = (data?: any) => {
-        let fullAddress = data.address;
+        let fullAddress: string = data.address;
+        let zonecode: string = data.zonecode;
         let extraAddress = "";
 
         if (data.addressType === "R") {
@@ -19,8 +24,7 @@ const Postcode = () => {
             fullAddress += extraAddress !== "" ? ` (${extraAddress})` : "";
         }
         // zonecode : 우편번호,fullAddress 주소
-        console.log(data.zonecode);
-        console.log(data.roadAddress);
+        btnF(zonecode, fullAddress);
     };
 
     const handleClick = () => {

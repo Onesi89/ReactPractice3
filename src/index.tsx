@@ -14,13 +14,13 @@ const root = createRoot(container);
 let persistor = persistStore(store);
 
 root.render(
-    <Provider store={store}>
-        <PersistGate loading={null} persistor={persistor}>
-            <ProSidebarProvider>
+    <ProSidebarProvider>
+        <Provider store={store}>
+            <PersistGate loading={null} persistor={persistor}>
                 <App />
-            </ProSidebarProvider>
-        </PersistGate>
-    </Provider>,
+            </PersistGate>
+        </Provider>
+    </ProSidebarProvider>,
 );
 
 // If you want to start measuring performance in your app, pass a function

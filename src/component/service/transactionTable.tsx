@@ -1,16 +1,18 @@
 import React from "react";
+import styles from "../../css/moneyCharge.module.css";
 
 type TransactionTableProps = {
     header: string[];
-    data: string[];
+    data: string[][];
+    tableClassName?: string;
 };
 const cdbreact = require("cdbreact");
 
-const TransactionTable: React.FC<TransactionTableProps> = ({ header, data }) => {
+const TransactionTable: React.FC<TransactionTableProps> = ({ header, data, tableClassName }) => {
     const { CDBTable, CDBTableHeader, CDBTableBody, CDBContainer } = cdbreact;
     return (
         <CDBContainer>
-            <CDBTable striped hover responsiveMd className="transcactionTbale">
+            <CDBTable striped hover responsiveMd className={tableClassName}>
                 <CDBTableHeader>
                     <tr>
                         {header.map((h, idx) => (
@@ -19,11 +21,13 @@ const TransactionTable: React.FC<TransactionTableProps> = ({ header, data }) => 
                     </tr>
                 </CDBTableHeader>
                 <CDBTableBody>
-                    <tr>
-                        {data.map((d, idx) => (
-                            <th key={idx}>{d}</th>
-                        ))}
-                    </tr>
+                    {data.map((list, listidx) => (
+                        <tr key={listidx}>
+                            {list.map((d, idx) => (
+                                <td key={idx}>{d}</td>
+                            ))}
+                        </tr>
+                    ))}
                 </CDBTableBody>
             </CDBTable>
         </CDBContainer>

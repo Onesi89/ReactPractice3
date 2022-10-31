@@ -47,8 +47,17 @@
 }
 
 .moneychargeContainer input[type="text"] {
-    border: none;
+    border: 0 solid black;
+    /* border-left: 0px;
+    border-top: 0px;
+    border-right: 0px;
+    border-bottom: 0px; */
     background-color: transparent;
+}
+
+.moneychargeContainer input[type="text"]:focus {
+    border: 0 solid black;
+    /* background-color: transparent; */
 }
 
 .moneychargeContainer input[type="number"] {
@@ -116,7 +125,8 @@
         max-width: 60vw !important;
     }
 
-    .moneychargeContainer thead {
+    .moneychargeContainer thead,
+    .moneychargeContainer tbody {
         font-size: 0.6rem;
     }
     .moneychargeContainer > header {
@@ -145,4 +155,39 @@
     .moneychargeContainer > div {
         max-width: 80vw !important;
     }
+}
+
+.moneychargeTable svg {
+    cursor: pointer;
+}
+
+.transactionTable th,
+.transactionTable td {
+    text-align: center !important;
+}
+
+.MoneyChargeTable th,
+.MoneyChargeTable td {
+    width: 50%;
+    text-align: center !important;
+}
+
+.MoneyChargeTable input[type="number"]:focus {
+    outline: none;
+}
+
+.MoneyChargeTable input[type="number"] {
+    outline: none;
+    border: 0 solid black !important;
+    background-color: transparent !important;
+    text-align: center !important;
+    box-shadow: none;
+    position: relative;
+    top: 0px;
+}
+
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
 }

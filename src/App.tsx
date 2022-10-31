@@ -12,7 +12,7 @@ import Test from "./component/test";
 
 const App: React.FC = () => {
     let loginCheck = useSelector((state: any) => {
-        return state.value;
+        return state?.value;
     });
 
     if (!loginCheck?.mnum) {

@@ -73,7 +73,7 @@ const changeF = ({ props, vald, setVald, allcheck, setAllcheck }: changeFProps) 
             change = changeF2(vald, abc);
             break;
         case "address3":
-            abc = { address: { address3: props.target.value } };
+            abc = { address: { ...vald.address, address3: props.target.value } };
             change = changeF2(vald, abc);
             break;
         case "email1":

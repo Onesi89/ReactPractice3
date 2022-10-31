@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { Outlet } from "react-router-dom";
 import styles from "../css/headerStyle.module.css";
 import Logout from "./Logout";
 import { useSelector } from "react-redux";
@@ -7,34 +6,34 @@ import { Container, Nav, Navbar } from "react-bootstrap";
 import Leftnav2 from "./Leftnav2";
 import { LinkContainer } from "react-router-bootstrap";
 
-// const leftNavToggle = (toggleValue: any, setToggleValue: any) => {
-//     let size = { left: "150px" };
+const leftNavToggle = (toggleValue: any, setToggleValue: any) => {
+    let size = { left: "150px" };
 
-//     if (toggleValue.toggle) {
-//         size = { left: "320px" };
-//     }
+    if (toggleValue.toggle) {
+        size = { left: "320px" };
+    }
 
-//     let toggleButton = {
-//         toggle: !toggleValue.toggle,
-//         ...size,
-//     };
+    let toggleButton = {
+        toggle: !toggleValue.toggle,
+        ...size,
+    };
 
-//     setToggleValue(toggleButton);
-// };
+    setToggleValue(toggleButton);
+};
 
 const Headers = () => {
     console.log("Header 렌더링 시작");
     const memberInfo = useSelector((state: any) => {
-        return state.value;
+        return state?.value;
     });
-    // const [toggleValue, setToggleValue] = useState({
-    //     toggle: true,
-    //     left: "130px",
-    // });
+    const [toggleValue, setToggleValue] = useState({
+        toggle: true,
+        left: "130px",
+    });
 
-    // useEffect(() => {
-    //     leftNavToggle(toggleValue, setToggleValue);
-    // }, []);
+    useEffect(() => {
+        leftNavToggle(toggleValue, setToggleValue);
+    }, []);
 
     return (
         <>
@@ -63,12 +62,11 @@ const Headers = () => {
             </Navbar>
             <Leftnav2 />
 
-            {/* <Leftnav2 leftNavToggle={() => leftNavToggle(toggleValue, setToggleValue)} /> */}
             {/* <div style={{ position: "absolute", top: "120px", left: toggleValue.left, color: "black" }}>
                 <Outlet />
-            </div> */}
+            </div> *
 
-            {/* 혼자만든 커스텀메뉴
+            * 혼자만든 커스텀메뉴
              <div style={{ display: "flex", flexDirection: "column" }}>
                 {toggleValue.toggle ? (
                     <LeftNav info={{ ...memberInfo }} leftNavToggle={leftNavToggle} />

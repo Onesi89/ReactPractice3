@@ -1,7 +1,7 @@
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useCallback, useState } from "react";
 
 //import react pro sidebar components
-import { Sidebar, Menu, MenuItem, useProSidebar, SubMenu } from "react-pro-sidebar";
+import { Sidebar, Menu, MenuItem, SubMenu } from "react-pro-sidebar";
 
 //import icons from react icons
 import { FiEdit, FiHome, FiStar } from "react-icons/fi";
@@ -14,7 +14,7 @@ import { Link, Outlet } from "react-router-dom";
 const Leftnav2 = () => {
     console.log("Leftnav2 로딩 시작");
 
-    // const { collapsed, collapseSidebar } = useProSidebar();
+    // 사용안함 const { collapsed, collapseSidebar } = useProSidebar();
     const [collapsed, setCollapsed] = useState(false);
 
     const [toggleValue, setToggleValue] = useState({
@@ -71,6 +71,7 @@ const Leftnav2 = () => {
                             >
                                 머니충전
                             </MenuItem>
+
                             <MenuItem
                                 className={styles.leftnav2Menu}
                                 icon={<MdPayment />}

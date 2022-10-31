@@ -3,7 +3,6 @@ import React, { useEffect, useState } from "react";
 const Main = () => {
     const [loading, setLoading] = useState(true);
     console.log("Main 컴포넌트 로딩 시작");
-    console.log(loading);
 
     useEffect(() => {
         console.log("Main 컴포넌트 로딩 끝");

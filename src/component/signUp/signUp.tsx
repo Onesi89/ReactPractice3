@@ -17,7 +17,6 @@ type allCheck = {
     pwCheck: boolean;
     name: boolean;
     phone: boolean;
-    addressNumber: boolean;
     address: boolean;
     email: boolean;
 };
@@ -30,7 +29,7 @@ type vald = {
     pwCheck: string;
     name: string;
     phone: { phone1?: string; phone2?: string; phone3?: string };
-    address: { address1?: string; address1_2?: string; address2: string; address3: string };
+    address: { address1?: string; address1_2?: string; address2?: string; address3?: string };
     email: { email1: string; email2: string };
 };
 
@@ -77,6 +76,7 @@ const SignUp = () => {
         idCheck: false,
         mobileCheck: false,
         emailCheck: true,
+        addressCheck: false,
     });
 
     const [allcheck, setAllcheck] = useState<allCheck>({
@@ -85,7 +85,6 @@ const SignUp = () => {
         pwCheck: false,
         name: false,
         phone: false,
-        addressNumber: false,
         address: false,
         email: false,
     });
@@ -97,6 +96,7 @@ const SignUp = () => {
         nameFocus: false,
         phoneFocus: false,
         emailFocus: false,
+        addressFocus: false,
     });
 
     const [vald, setVald] = useState<vald>({
@@ -105,19 +105,21 @@ const SignUp = () => {
         pwCheck: "",
         name: "",
         phone: { phone1: "010", phone2: "", phone3: "" },
-        address: { address1: "", address1_2: "", address2: "", address3: "" },
+        address: { address1: " ", address1_2: "", address2: " ", address3: " " },
         email: { email1: "", email2: "" },
     });
 
-    useEffect(() => {
-        console.log("focus 감지");
-    }, [focus]);
+    useEffect(() => {}, [focus]);
 
     useEffect(() => {
         console.log(allcheck);
     }, [allcheck]);
-    useEffect(() => {}, [value]);
-    useEffect(() => {}, [vald]);
+    useEffect(() => {
+        console.log(value);
+    }, [value]);
+    useEffect(() => {
+        console.log(vald);
+    }, [vald]);
 
     // useEffect(() => {
     //     if (memberInfo?.mnum !== undefined) {
@@ -382,30 +384,31 @@ const SignUp = () => {
                                                     type="text"
                                                     id="addres1"
                                                     value={vald.address.address1}
-                                                    onChange={(props: React.ChangeEvent<HTMLInputElement>) =>
-                                                        changeF({ props, vald, setVald, allcheck, setAllcheck })
-                                                    }
+                                                    readOnly
                                                     style={{ width: "100px", margin: "0" }}
-                                                />
-                                                <span className={styles.signUpspanline} style={{ margin: "0" }}>
-                                                    -
-                                                </span>
-                                                <input
-                                                    type="text"
-                                                    id="address1_2"
-                                                    value={vald.address.address1_2}
-                                                    onChange={(props: React.ChangeEvent<HTMLInputElement>) =>
-                                                        changeF({ props, vald, setVald, allcheck, setAllcheck })
-                                                    }
-                                                    style={{ width: "100px", marginLeft: "0px" }}
+                                                    className={styles.readonlyNoneColor}
                                                 />
                                             </div>
                                         </td>
 
                                         <td className={styles.btnTd} colSpan={2}>
-                                            <div style={{ marginLeft: "-240px", width: "100px" }}>
-                                                <Postcode />
-                                                {/* <Button check={true} text="검색" btnF={postcode} /> */}
+                                            <div style={{ marginLeft: "-200px", width: "100px" }}>
+                                                <Postcode
+                                                    btnF={(zonecode: string, fullAddress: string) => {
+                                                        setVald({
+                                                            ...vald,
+                                                            address: { address1: zonecode, address2: fullAddress },
+                                                        });
+                                                        setValue({
+                                                            ...value,
+                                                            addressCheck: true,
+                                                        });
+                                                        setAllcheck({
+                                                            ...allcheck,
+                                                            address: true,
+                                                        });
+                                                    }}
+                                                />
                                             </div>
                                         </td>
                                     </tr>
@@ -420,12 +423,10 @@ const SignUp = () => {
                                                 <input
                                                     type="text"
                                                     id="addres2"
+                                                    className={styles.readonlyNoneColor}
                                                     value={vald.address.address2}
-                                                    onChange={(props: React.ChangeEvent<HTMLInputElement>) =>
-                                                        changeF({ props, vald, setVald, allcheck, setAllcheck })
-                                                    }
+                                                    readOnly
                                                     placeholder="주소"
-                                                    onFocus={() => setFocus({ ...focus, emailFocus: true })}
                                                 />
                                             </div>
                                         </td>
@@ -438,13 +439,13 @@ const SignUp = () => {
                                             <div>
                                                 <input
                                                     type="text"
-                                                    id="addres3"
-                                                    value={vald.address.address3}
+                                                    id="address3"
+                                                    defaultValue={vald.address.address3}
                                                     onChange={(props: React.ChangeEvent<HTMLInputElement>) =>
                                                         changeF({ props, vald, setVald, allcheck, setAllcheck })
                                                     }
-                                                    onFocus={() => setFocus({ ...focus, emailFocus: true })}
-                                                    readOnly
+                                                    onFocus={() => setFocus({ ...focus, addressFocus: true })}
+                                                    readOnly={!value.addressCheck}
                                                 />
                                             </div>
                                         </td>
@@ -517,11 +518,11 @@ const SignUp = () => {
                                                                 ...vald,
                                                                 ...abc,
                                                             };
-
+                                                            console.log(value);
                                                             setValue({ ...value, emailCheck: false });
                                                             return setVald(change);
                                                         }
-
+                                                        console.log(allcheck);
                                                         setValue({ ...value, emailCheck: true });
                                                         setVald(change);
                                                         return;
@@ -533,10 +534,11 @@ const SignUp = () => {
                                     {focus.emailFocus && (
                                         <Errmsg
                                             msg={["이메일을 입력해주세요.", "이메일을 확인해주세요."]}
-                                            pattern={/^[a-zA-Z0-9+-\_.]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/}
+                                            pattern={/^[a-zA-Z0-9+-\_.]{5,}@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/}
                                             word={vald.email.email1 + "@" + vald.email.email2}
-                                            buttonAble={setAllcheck}
-                                            keyss="emailCheck"
+                                            buttonAble={() => {}}
+                                            keyss="email"
+                                            checkF={(trueOrFalse: boolean) => checkF("email", trueOrFalse)}
                                         />
                                     )}
                                     <tr className={styles.agree}>

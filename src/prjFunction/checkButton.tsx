@@ -19,7 +19,7 @@ export const checkButton = ({ ...allcheck }: allCheck) => {
         return alert("이름을 확인 해주세요.");
     } else if (!allcheck.phone) {
         return alert("전화번호를 확인 해주세요.");
-    } else if (!(allcheck.addressNumber && allcheck.address)) {
+    } else if (!allcheck.address) {
         return alert("주소를 확인 해주세요.");
     } else if (!allcheck.email) {
         return alert("이메일을 확인 해주세요");
