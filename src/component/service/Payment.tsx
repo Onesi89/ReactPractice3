@@ -31,7 +31,7 @@ const Payment = () => {
                             </tr>
                         </CDBTableHeader>
                         <CDBTableBody>
-                            <tr>
+                            <tr className={styles.PaymentCommTr}>
                                 <td>가&nbsp;&nbsp;맹&nbsp;&nbsp;점</td>
                                 <td>
                                     <div style={{ height: "100%" }}>
@@ -43,7 +43,7 @@ const Payment = () => {
                                     </div>
                                 </td>
                             </tr>
-                            <tr>
+                            <tr className={styles.PaymentCommTr}>
                                 <td>구매물품</td>
                                 <td>
                                     <div style={{ height: "100%" }}>
@@ -55,13 +55,15 @@ const Payment = () => {
                                     </div>
                                 </td>
                             </tr>
-                            <tr>
+                            <tr className={styles.PaymentCommTr}>
                                 <td style={{}}>결제금액</td>
                                 <td>
-                                    <input type="number" />
+                                    <div>
+                                        <input type="number" />
+                                    </div>
                                 </td>
                             </tr>
-                            <tr>
+                            <tr className={styles.PaymentCommTr}>
                                 <td>결제수단</td>
                                 <td>
                                     <div style={{ height: "100%" }}>
@@ -73,7 +75,7 @@ const Payment = () => {
                                     </div>
                                 </td>
                             </tr>
-                            <tr>
+                            <tr className={styles.PaymentCommTr}>
                                 <td
                                     colSpan={2}
                                     style={{

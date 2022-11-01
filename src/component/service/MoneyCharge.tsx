@@ -7,8 +7,8 @@ const cdbreact = require("cdbreact");
 
 const MoneyCharge = () => {
     const [charge, setCharge] = useState(0);
+    const [plus, setPlus] = useState("");
     const [total, setTotal] = useState(0);
-    const [plus, setPlus] = useState(0);
 
     console.log("머니충전 시작");
 
@@ -29,9 +29,9 @@ const MoneyCharge = () => {
                     <CDBTable striped hover responsiveMd className={styles.MoneyChargeTable}>
                         <CDBTableHeader>
                             <tr>
-                                <th>계정명</th>
+                                <th>계&nbsp;정&nbsp;명</th>
 
-                                <th>금액</th>
+                                <th>금&emsp;&emsp;&emsp;&emsp;액</th>
                             </tr>
                         </CDBTableHeader>
                         <CDBTableBody>
@@ -39,28 +39,32 @@ const MoneyCharge = () => {
                                 <td>머니 잔&nbsp;&nbsp;&nbsp;액</td>
                                 <td>
                                     <input type="number" readOnly value={charge} />
-                                    <span style={{ position: "relative", left: "-12%" }}>원</span>
+                                    <span>원</span>
                                 </td>
                             </tr>
                             <tr>
                                 <td>머니 충전액</td>
                                 <td>
                                     <input
-                                        type="number"
+                                        type="text"
                                         value={plus}
                                         onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
-                                            setPlus(Number(e.target.value));
-                                            setTotal(Number(e.target.value) + Number(charge));
+                                            setPlus(e.target.value);
+                                            // setTotal(Number(e.target.value) + Number(charge));
+                                        }}
+                                        style={{
+                                            border: "1px solid rgb(255,64,64)",
+                                            boxShadow: "1px 1px 1px rgb(255,50,50)",
                                         }}
                                     />
-                                    <span style={{ position: "relative", left: "-12%" }}>원</span>
+                                    <span>원</span>
                                 </td>
                             </tr>
                             <tr>
                                 <td>충전 결과액</td>
                                 <td>
                                     <input type="number" readOnly value={total} />
-                                    <span style={{ position: "relative", left: "-12%" }}>원</span>
+                                    <span>원</span>
                                 </td>
                             </tr>
                             <tr>

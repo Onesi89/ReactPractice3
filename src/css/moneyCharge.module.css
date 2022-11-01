@@ -178,8 +178,8 @@
 
 .MoneyChargeTable input[type="number"] {
     outline: none;
-    border: 0 solid black !important;
-    background-color: transparent !important;
+    border: 0 solid black;
+    background-color: transparent;
     text-align: center !important;
     box-shadow: none;
     position: relative;
@@ -190,4 +190,8 @@ input[type="number"]::-webkit-outer-spin-button,
 input[type="number"]::-webkit-inner-spin-button {
     -webkit-appearance: none;
     margin: 0;
+}
+
+.PaymentCommTr td {
+    height: 49px;
 }
