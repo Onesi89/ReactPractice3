@@ -34,13 +34,25 @@ const Payment = () => {
                             <tr>
                                 <td>가&nbsp;&nbsp;맹&nbsp;&nbsp;점</td>
                                 <td>
-                                    <CustomSelectBox dataList={["A지점", "B지점"]} superName={"payment1"} />
+                                    <div style={{ height: "100%" }}>
+                                        <CustomSelectBox
+                                            dataList={["A지점", "B지점"]}
+                                            superName={"payment1"}
+                                            width={"200px"}
+                                        />
+                                    </div>
                                 </td>
                             </tr>
                             <tr>
                                 <td>구매물품</td>
                                 <td>
-                                    <CustomSelectBox dataList={["A물품", "B물품"]} superName={"payment2"} />
+                                    <div style={{ height: "100%" }}>
+                                        <CustomSelectBox
+                                            dataList={["A물품", "B물품"]}
+                                            superName={"payment2"}
+                                            width={"200px"}
+                                        />
+                                    </div>
                                 </td>
                             </tr>
                             <tr>
@@ -52,10 +64,13 @@ const Payment = () => {
                             <tr>
                                 <td>결제수단</td>
                                 <td>
-                                    <CustomSelectBox
-                                        dataList={["선불머니", "카드", "계좌이체"]}
-                                        superName={"payment3"}
-                                    />
+                                    <div style={{ height: "100%" }}>
+                                        <CustomSelectBox
+                                            dataList={["선불머니", "카드", "계좌이체"]}
+                                            superName={"payment3"}
+                                            width={"200px"}
+                                        />
+                                    </div>
                                 </td>
                             </tr>
                             <tr>
@@ -63,8 +78,6 @@ const Payment = () => {
                                     colSpan={2}
                                     style={{
                                         borderBottom: "none",
-                                        marginTop: "20",
-                                        backgroundColor: "white",
                                     }}
                                 >
                                     <button type="button" style={{ margin: "0 auto" }}>

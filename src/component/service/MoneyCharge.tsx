@@ -36,9 +36,10 @@ const MoneyCharge = () => {
                         </CDBTableHeader>
                         <CDBTableBody>
                             <tr>
-                                <td>머니 잔액</td>
+                                <td>머니 잔&nbsp;&nbsp;&nbsp;액</td>
                                 <td>
                                     <input type="number" readOnly value={charge} />
+                                    <span style={{ position: "relative", left: "-12%" }}>원</span>
                                 </td>
                             </tr>
                             <tr>
@@ -52,12 +53,26 @@ const MoneyCharge = () => {
                                             setTotal(Number(e.target.value) + Number(charge));
                                         }}
                                     />
+                                    <span style={{ position: "relative", left: "-12%" }}>원</span>
                                 </td>
                             </tr>
                             <tr>
                                 <td>충전 결과액</td>
                                 <td>
                                     <input type="number" readOnly value={total} />
+                                    <span style={{ position: "relative", left: "-12%" }}>원</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td
+                                    colSpan={2}
+                                    style={{
+                                        borderBottom: "none",
+                                    }}
+                                >
+                                    <button type="button" style={{ margin: "0 auto", marginTop: "10px" }}>
+                                        충전하기
+                                    </button>
                                 </td>
                             </tr>
                         </CDBTableBody>

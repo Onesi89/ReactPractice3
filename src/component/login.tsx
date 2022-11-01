@@ -59,6 +59,13 @@ const Login = () => {
     const Click = async (e: React.MouseEvent) => {
         try {
             e.preventDefault();
+            if (info.memberID === "") {
+                alert("ID를 입력하시길 바랍니다.");
+            }
+
+            if (info.memberPW === "") {
+                alert("비밀번호를 입력하시길 바랍니다.");
+            }
             let data: LoginType = { ...info };
             await Movemain(data, navigate, dispatch);
         } catch (err) {

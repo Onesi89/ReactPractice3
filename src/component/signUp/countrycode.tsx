@@ -91,7 +91,9 @@ function CustomSelectBox({
                                             className={superName}
                                             style={{ display: "inline-block", width: "100%" }}
                                         >
-                                            <span style={{ display: "inline-block", width: "100%" }}>{data}</span>
+                                            <span style={{ display: "inline-block", width: "100%", textAlign: "left" }}>
+                                                {data}
+                                            </span>
                                         </a>
                                     </li>
                                 );

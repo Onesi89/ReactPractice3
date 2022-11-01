@@ -57,7 +57,7 @@ const Payment = () => {
 
                     <div>
                         <span>결제수단</span>
-                        <div style={{ marginLeft: "-30px", marginTop: "15px" }}>
+                        <div style={{ marginLeft: "-30px", marginTop: "-5px" }}>
                             <CustomSelectBox
                                 dataList={["선불머니", "카드", "계좌이체"]}
                                 height={"100px"}
