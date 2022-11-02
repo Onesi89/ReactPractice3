@@ -1,0 +1,33 @@
+.EditMemberInfoContainer header {
+    display: block;
+    width: 80vw;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    align-self: start;
+    font-size: 25px;
+    font-weight: bolder;
+    margin-bottom: 25px;
+    min-width: 20vw;
+    padding: 10px;
+}
+
+@media (min-width: 550px) {
+    .EditMemberInfoContainer > header {
+        max-width: 60vw !important;
+    }
+}
+
+@media (max-width: 1200px) {
+    .EditMemberInfoContainer > header {
+        max-width: 60vw !important;
+        margin-left: 10vw;
+    }
+}
+
+@media (max-width: 1390px) {
+}
+
+@media (min-width: 1400px) {
+    .EditMemberInfoContainer > header {
+        max-width: 80vw !important;
+    }
+}

@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import styles from "../../css/moneyCharge.module.css";
+import React, { useEffect, useState } from "react";
+import styles from "../../css/table.module.css";
 import { GrTransaction } from "react-icons/gr";
 import TopBanner from "../../lib/topBanner";
 import { MdPayment } from "react-icons/md";
@@ -16,6 +16,8 @@ import { FcLeave } from "react-icons/fc";
 const Payment = () => {
     const [prevStartDate, setPrevStartDate] = useState(new Date());
     const [nextStartDate, setNextStartDate] = useState(new Date());
+
+    useEffect(() => {});
 
     return (
         <>
@@ -57,7 +59,7 @@ const Payment = () => {
 
                     <div>
                         <span>결제수단</span>
-                        <div style={{ marginLeft: "-30px" }}>
+                        <div style={{ marginLeft: "-30px", paddingTop: "5%" }}>
                             <CustomSelectBox
                                 dataList={["선불머니", "카드", "계좌이체"]}
                                 height={"100px"}

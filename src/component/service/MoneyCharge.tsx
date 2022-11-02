@@ -1,18 +1,35 @@
-import React, { useState } from "react";
-import styles from "../../css/moneyCharge.module.css";
+import React, { useEffect, useRef, useState } from "react";
+import styles from "../../css/table.module.css";
 import { GrMoney, GrTransaction } from "react-icons/gr";
 import TopBanner from "../../lib/topBanner";
+import inputPriceFormat from "../../prjFunction/commaFunction";
 
+//외부 라이브러리 cdbreact 호출
 const cdbreact = require("cdbreact");
 
+//충전하기 버튼 눌렀을 때 실행되는 함수
+const submit = (plus: string, ref: React.RefObject<HTMLInputElement>) => {
+    if (plus === "") {
+        alert("충전액을 입력해주세요.");
+        ref.current?.focus();
+    }
+};
+
+//함수 컴포넌트 시작
 const MoneyCharge = () => {
-    const [charge, setCharge] = useState(0);
-    const [plus, setPlus] = useState("");
-    const [total, setTotal] = useState(0);
+    const [charge, setCharge] = useState(""); //머니 잔액
+    const [plus, setPlus] = useState(""); //머니 충전액
+    const inputBox = useRef<HTMLInputElement>(null); // 머니 충전액 ref
+    const [total, setTotal] = useState(""); //충전 결과액
+
+    const { CDBTable, CDBTableHeader, CDBTableBody, CDBContainer } = cdbreact; //외부 라이브러리 cdbreact hook 사용
 
     console.log("머니충전 시작");
 
-    const { CDBTable, CDBTableHeader, CDBTableBody, CDBContainer } = cdbreact;
+    useEffect(() => {
+        // AJAX로 머니 잔액 불러와야 함, 가맹점 선택시 AJAX 연동해야 함.
+        // 성공, 실패, 로딩 중 처리
+    }, []);
 
     return (
         <>
@@ -38,8 +55,8 @@ const MoneyCharge = () => {
                             <tr>
                                 <td>머니 잔&nbsp;&nbsp;&nbsp;액</td>
                                 <td>
-                                    <input type="number" readOnly value={charge} />
-                                    <span>원</span>
+                                    <input type="text" readOnly value={charge} style={{ outline: "none" }} />
+                                    <span>&nbsp;원</span>
                                 </td>
                             </tr>
                             <tr>
@@ -48,23 +65,25 @@ const MoneyCharge = () => {
                                     <input
                                         type="text"
                                         value={plus}
+                                        ref={inputBox}
                                         onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
-                                            setPlus(e.target.value);
-                                            // setTotal(Number(e.target.value) + Number(charge));
+                                            setPlus(inputPriceFormat(e.target.value));
+                                            setTotal(inputPriceFormat(e.target.value) + inputPriceFormat(charge));
                                         }}
                                         style={{
-                                            border: "1px solid rgb(255,64,64)",
-                                            boxShadow: "1px 1px 1px rgb(255,50,50)",
+                                            border: "0.5px solid rgb(255,64,64)",
+                                            boxShadow: "1px 1px 1px red",
+                                            textAlign: "center",
                                         }}
                                     />
-                                    <span>원</span>
+                                    <span>&nbsp;원</span>
                                 </td>
                             </tr>
                             <tr>
                                 <td>충전 결과액</td>
                                 <td>
-                                    <input type="number" readOnly value={total} />
-                                    <span>원</span>
+                                    <input type="text" readOnly value={total} style={{ outline: "none" }} />
+                                    <span>&nbsp;원</span>
                                 </td>
                             </tr>
                             <tr>
@@ -74,7 +93,11 @@ const MoneyCharge = () => {
                                         borderBottom: "none",
                                     }}
                                 >
-                                    <button type="button" style={{ margin: "0 auto", marginTop: "10px" }}>
+                                    <button
+                                        type="button"
+                                        style={{ margin: "0 auto", marginTop: "10px" }}
+                                        onClick={() => submit(plus, inputBox)}
+                                    >
                                         충전하기
                                     </button>
                                 </td>

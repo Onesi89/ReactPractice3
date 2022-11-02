@@ -70,8 +70,6 @@ const SignUp = () => {
         return state?.value;
     });
 
-    let memberModify = {};
-
     const [value, setValue] = useState({
         idCheck: false,
         mobileCheck: false,
@@ -109,6 +107,8 @@ const SignUp = () => {
         email: { email1: "", email2: "" },
     });
 
+    const [memberModify, setMemberModify] = useState<boolean>(false);
+
     useEffect(() => {}, [focus]);
 
     useEffect(() => {
@@ -121,22 +121,25 @@ const SignUp = () => {
         console.log(vald);
     }, [vald]);
 
-    // useEffect(() => {
-    //     if (memberInfo?.mnum !== undefined) {
-    //         memberModify = { readOnly: true };
-    //         let member = {
-    //             id: memberInfo?.id,
-    //             pw: memberInfo?.pw,
-    //             pwCheck: memberInfo?.pwCheck,
-    //             name: memberInfo?.name,
-    //             phone: memberInfo?.phone,
-    //             email: memberInfo?.email,
-    //         };
-    //         setVald(member);
-    //     } else {
-    //         memberModify = { readOnly: false };
-    //     }
-    // }, []);
+    useEffect(() => {
+        console.log(memberInfo);
+        if (memberInfo?.mnum !== undefined) {
+            setMemberModify(true);
+            console.log(memberInfo?.id);
+            let member = {
+                id: memberInfo?.memberID,
+                // pw: memberInfo?.pw,
+                // pwCheck: memberInfo?.pwCheck,
+                // name: memberInfo?.name,
+                // phone: memberInfo?.phone,
+                // email: memberInfo?.email,
+            };
+            setVald({ ...vald, ...member });
+            setAllcheck({ ...allcheck, id: true });
+        } else {
+            setMemberModify(false);
+        }
+    }, []);
 
     const buttonAble = (prop: object) => {
         setValue({ ...value, ...prop }), [value];
@@ -191,21 +194,27 @@ const SignUp = () => {
                                                         changeF({ props, vald, setVald, allcheck, setAllcheck })
                                                     }
                                                     onFocus={() => setFocus({ ...focus, idFocus: true })}
-                                                    {...memberModify}
+                                                    readOnly={memberModify}
                                                 />
                                             </div>
                                         </td>
                                         <td className={styles.btnTd}>
-                                            {
+                                            {!memberModify ? (
                                                 <Button
                                                     check={value.idCheck}
                                                     text="중복확인"
                                                     btnF={() => test("id", true, setAllcheck, allcheck)}
                                                 />
-                                            }
+                                            ) : (
+                                                <Button
+                                                    check={value.idCheck}
+                                                    text="중복확인"
+                                                    btnF={() => test("id", false, setAllcheck, allcheck)}
+                                                />
+                                            )}
                                         </td>
                                     </tr>
-                                    {focus.idFocus && (
+                                    {!memberModify && focus.idFocus && (
                                         <Errmsg
                                             msg={[
                                                 "로그인 아이디를 입력해주세요",

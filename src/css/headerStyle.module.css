@@ -8,58 +8,20 @@
 }
 
 .headerDivIteams {
-    display: flex;
+    position: relative;
+    color: white;
+    font-size: 20px;
+    font-weight: bolder;
+    text-shadow: 1px 1px 2px darkgray;
+    top: 15px;
+    cursor: pointer;
+    margin-right: 20px;
+
+    /* display: flex;
     flex-direction: row;
     justify-content: flex-start;
     color: white;
     align-items: center;
     text-shadow: 1px 1px 1px black;
-    cursor: pointer;
-}
-
-.headerLink {
-    text-decoration: none;
-    margin-left: 0.5rem;
-    color: white;
-}
-
-.headerIcon {
-    margin-left: 35px;
-}
-
-.headerSpace {
-    margin-right: 10px;
-}
-
-.headerButton {
-    border-color: rgb(32, 37, 40);
-    background-color: rgb(69, 82, 100);
-    margin-right: 10px;
-    color: white;
-}
-
-.headerRightUl {
-    display: block;
-    list-style-type: disc;
-    margin-block-start: 1em;
-    margin-block-end: 1em;
-    margin-inline-start: 0px;
-    margin-inline-end: 0px;
-    padding-inline-start: 40px;
-    float: right;
-    margin: 0 25px 0 0;
-}
-
-li {
-    margin-right: 10px;
-    display: inline-block;
-}
-
-.toggleButton {
-    width: 40px;
-    height: 40px;
-    display: flex;
-    background-color: rgb(100, 109, 123);
-    color: wheat;
-    border: none;
+    cursor: pointer; */
 }

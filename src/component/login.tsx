@@ -61,16 +61,19 @@ const Login = () => {
             e.preventDefault();
             if (info.memberID === "") {
                 alert("ID를 입력하시길 바랍니다.");
+                return;
             }
 
             if (info.memberPW === "") {
                 alert("비밀번호를 입력하시길 바랍니다.");
+                return;
             }
             let data: LoginType = { ...info };
             await Movemain(data, navigate, dispatch);
         } catch (err) {
             console.log(err);
             alert("아이디 또는 암호를 확인해주세요.");
+            return;
         }
     };
 

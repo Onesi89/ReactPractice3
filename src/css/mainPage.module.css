@@ -1,0 +1,68 @@
+.mainContainer {
+    display: flex;
+    flex-direction: column;
+    width: 80vw;
+    height: 100%;
+}
+
+.mainContainer > div {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height: 100%;
+}
+
+@media (max-width: 1300px) {
+    .mainContainer > div {
+        flex-direction: column;
+    }
+    .mainContainer > div section {
+        max-width: 800px;
+        margin-bottom: 100px;
+    }
+}
+
+@media (min-width: 1301px) {
+    .mainContainer > div {
+        flex-direction: row;
+    }
+    .mainContainer > div section {
+        max-width: 50%;
+    }
+}
+
+.mainContainer section {
+    width: 100vw;
+    height: 60vh;
+    box-shadow: 4px 4px 3px gray, -1px -1px 1px gray;
+    margin: 20px;
+    text-align: center;
+}
+
+.mainContainer header {
+    display: block;
+    width: 80vw;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    align-self: start;
+    font-size: 25px;
+    font-weight: bolder;
+    margin-bottom: 25px;
+    min-width: 20vw;
+    padding: 10px;
+}
+
+.mainContainer section span {
+    display: inline-block;
+    font-size: 25px;
+}
+
+.mainContainer section span {
+    display: inline-block;
+    padding-top: 10px;
+    font-size: 25px;
+}
+
+.mainContainer a {
+    text-decoration: none;
+    color: black;
+}

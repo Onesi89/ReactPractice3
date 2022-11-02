@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from "react";
+import React, { Suspense, useCallback, useState } from "react";
 
 //import react pro sidebar components
 import { Sidebar, Menu, MenuItem, SubMenu } from "react-pro-sidebar";
@@ -100,7 +100,16 @@ const Leftnav2 = () => {
                     </button>
                 </main>
             </div>
-            <div style={{ position: "absolute", top: "120px", left: toggleValue.left, color: "black" }}>
+            <div
+                style={{
+                    position: "absolute",
+                    top: "120px",
+                    left: toggleValue.left,
+                    color: "black",
+                    width: "83vw",
+                    height: "100%",
+                }}
+            >
                 <Outlet />
             </div>
         </>

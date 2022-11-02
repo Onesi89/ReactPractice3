@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "../../css/moneyCharge.module.css";
+import styles from "../../css/table.module.css";
 
 type TransactionTableProps = {
     header: string[];

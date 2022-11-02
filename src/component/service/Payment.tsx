@@ -1,15 +1,49 @@
-import React from "react";
-import styles from "../../css/moneyCharge.module.css";
+import React, { useEffect, useRef, useState } from "react";
+import styles from "../../css/table.module.css";
 import { GrTransaction } from "react-icons/gr";
 import TopBanner from "../../lib/topBanner";
 import { MdPayment } from "react-icons/md";
 import CustomSelectBox from "../signUp/countrycode";
+import inputPriceFormat from "../../prjFunction/commaFunction";
 
+/* 외부 라이브러리 cdbreact 호출 */
 const cdbreact = require("cdbreact");
 
+/* 충전하기 버튼 눌렀을 때 실행되는 함수 */
+const submit = (plus: string, ref: React.RefObject<HTMLInputElement>) => {
+    if (plus === "") {
+        alert("결제금액을 입력해주세요.");
+        ref.current?.focus();
+    }
+};
+
+//함수 컴포넌트 시작
 const Payment = () => {
+    /*변수*/
+    const [payment, setPayment] = useState({
+        franchisee: "",
+        goods: "",
+        pay: "",
+        methodOfPayment: "선불머니",
+    });
+    /* 결제금액 ref*/
+    const inputBox = useRef<HTMLInputElement>(null);
+
+    const { CDBTable, CDBTableHeader, CDBTableBody, CDBContainer } = cdbreact; //외부 라이브러리 cdbreact hook 사용
+
     console.log("머니결제 시작");
-    const { CDBTable, CDBTableHeader, CDBTableBody, CDBContainer } = cdbreact;
+
+    useEffect(() => {
+        // "AJAX 작업 필요 =>  "
+        let payment = {
+            franchisee: "",
+            goods: "",
+            pay: "",
+            methodOfPayment: "선불머니",
+        };
+        setPayment(payment);
+    }, []);
+
     return (
         <>
             <TopBanner>
@@ -34,11 +68,11 @@ const Payment = () => {
                             <tr className={styles.PaymentCommTr}>
                                 <td>가&nbsp;&nbsp;맹&nbsp;&nbsp;점</td>
                                 <td>
-                                    <div style={{ height: "100%" }}>
+                                    <div style={{ height: "80%" }}>
                                         <CustomSelectBox
                                             dataList={["A지점", "B지점"]}
                                             superName={"payment1"}
-                                            width={"200px"}
+                                            width={"180px"}
                                         />
                                     </div>
                                 </td>
@@ -50,7 +84,7 @@ const Payment = () => {
                                         <CustomSelectBox
                                             dataList={["A물품", "B물품"]}
                                             superName={"payment2"}
-                                            width={"200px"}
+                                            width={"180px"}
                                         />
                                     </div>
                                 </td>
@@ -58,8 +92,24 @@ const Payment = () => {
                             <tr className={styles.PaymentCommTr}>
                                 <td style={{}}>결제금액</td>
                                 <td>
-                                    <div>
-                                        <input type="number" />
+                                    <div style={{ width: "100%", height: "100%" }}>
+                                        <input
+                                            type="text"
+                                            value={payment.pay}
+                                            readOnly
+                                            // onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+                                            //     setPayment({ ...payment, pay: inputPriceFormat(e.target.value) });
+                                            // }}
+                                            style={{
+                                                border: "0.5px solid rgb(255,64,64)",
+                                                boxShadow: "1px 1px 1px red",
+                                                width: "180px",
+                                                position: "relative",
+                                                left: "4px",
+                                                top: "5px",
+                                            }}
+                                            ref={inputBox}
+                                        />
                                     </div>
                                 </td>
                             </tr>
@@ -70,7 +120,7 @@ const Payment = () => {
                                         <CustomSelectBox
                                             dataList={["선불머니", "카드", "계좌이체"]}
                                             superName={"payment3"}
-                                            width={"200px"}
+                                            width={"180px"}
                                         />
                                     </div>
                                 </td>
@@ -82,7 +132,11 @@ const Payment = () => {
                                         borderBottom: "none",
                                     }}
                                 >
-                                    <button type="button" style={{ margin: "0 auto" }}>
+                                    <button
+                                        type="button"
+                                        style={{ margin: "0 auto" }}
+                                        onClick={() => submit(payment.pay, inputBox)}
+                                    >
                                         결제하기
                                     </button>
                                 </td>
