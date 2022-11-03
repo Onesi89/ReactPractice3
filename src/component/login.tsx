@@ -5,43 +5,88 @@ import List from "./socialLogin/list";
 import styles from "../css/login.module.css";
 import Movemain from "./socialLogin/movemain";
 
+/**
+ * @typedef {Object} LoginType
+ * @property {string} memberID 회원아이디
+ * @property {string} memberPW 회원암호
+ */
 export type LoginType = {
     memberID: string;
     memberPW: string;
     check: string;
 };
 
+/**
+ * @typedef {Object} SocialLoginType
+ * @property {string} email 회원이메일
+ * @property {string} name 회원이름
+ */
 export type SocialLoginType = {
     email: string;
     name: string;
     check: string;
 };
 
+/**
+ * 로그인 화면을 보여줍니다.
+ * @returns Login JSX
+ */
 const Login = () => {
-    const loginCheck = useSelector((state: any) => state.value);
-    const navigate = useNavigate();
-    const [info, setInfo] = useState({ memberID: "", memberPW: "", check: "false" });
-    const dispatch = useDispatch();
+    /** 이미지 저장 리스트 변수
+     * @type {string[]} url 이미지 리스트
+     */
     const imgList: string[] = ["url('./img/2.jpg')", "url('./img/4.jpg')", "url('./img/5.jpg')"];
+
+    /** redux에 저장한 state 호출(state : 회원정보)  */
+    const loginCheck = useSelector((state: any) => state.value);
+
+    /** useNaviagte hook 호출 */
+    const navigate = useNavigate();
+
+    /** redux dispatch(update) 함수 호출 */
+    const dispatch = useDispatch();
+
+    /** {아이디, 암호} state
+     * @typedef {Object} Info
+     */
+    /**
+     * @callback InfoSetter
+     * @param {Info} state
+     * @returns {void}
+     */
+    const [
+        /**@type {Info} */
+        info,
+        /**@type {InfoSetter} */
+        setInfo,
+    ] = useState<LoginType>({ memberID: "", memberPW: "", check: "false" });
+
+    /** {이미지} state */
     const [img, setImg] = useState("url('./img/2.jpg')");
 
+    /** 한 번 렌더링 후 로그인이 되어 있으면 /main/member 로 redirect  */
     useEffect(() => {
         if (loginCheck?.mnum) {
             navigate("/main/member");
         }
     }, [loginCheck, navigate]);
 
-    // const [ewid, ehei] = elementSize({ w: 400, h: 300 });
-
+    /** 한 번 렌더링 후 배경이미지 결정 */
     useEffect(() => {
         const imgF = () => {
             let num: number = Math.floor(Math.random() * 3);
+            //이미지 state 변경
             setImg(imgList[num]);
         };
 
+        //20초마다 배경이미지 변경
         setInterval(imgF, 20000);
     }, [img]);
 
+    /**
+     * @param prop []
+     * @return 회원정보 저장하는 콜백 함수
+     */
     const change = (prop: React.ChangeEvent<HTMLInputElement>) => {
         let changeInfo = {};
 
@@ -56,6 +101,10 @@ const Login = () => {
         setInfo(prevInfo);
     };
 
+    /**
+     * @param e [React.MouseEvent]
+     * @returns  ID체크, PW체크 그 후 로그인 콜백 함수
+     */
     const Click = async (e: React.MouseEvent) => {
         try {
             e.preventDefault();

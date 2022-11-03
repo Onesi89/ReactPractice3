@@ -1,6 +1,13 @@
 import React from "react";
 import { allCheck, vald } from "../component/signUp/signUp";
 
+/**
+ * @typedef {Object} changeFProps
+ * @property {React.ChangeEvent} props
+ * @property {vald} vald
+ * @property {allCheck} allcheck
+ * @property {Function} setAllcheck
+ */
 type changeFProps = {
     props: React.ChangeEvent<HTMLInputElement>;
     vald: vald;
@@ -9,13 +16,15 @@ type changeFProps = {
     setAllcheck: Function;
 };
 
+/**
+ * 회원가입 시 state 저장 함수
+ * @param {changeFProps} param0
+ */
+
 const changeF = ({ props, vald, setVald, allcheck, setAllcheck }: changeFProps) => {
     const changeF2 = (prevData: any, abc: any) => {
         return { ...prevData, ...abc };
     };
-    // const change3 = (prevData: any, abc: any, key:any) => {
-    //     return { ...prevData, {[key]:...abc} };
-    // };
 
     let change = { ...vald };
     let abc = {};
@@ -60,11 +69,6 @@ const changeF = ({ props, vald, setVald, allcheck, setAllcheck }: changeFProps) 
         case "address1":
             setAllcheck({ ...allcheck, phone: false });
             abc = { address: { address1: props.target.value } };
-            change = changeF2(vald, abc);
-            break;
-        case "address1_2":
-            setAllcheck({ ...allcheck, phone: false });
-            abc = { address: { address1_2: props.target.value } };
             change = changeF2(vald, abc);
             break;
         case "address2":

@@ -4,10 +4,13 @@ import { GrMoney, GrTransaction } from "react-icons/gr";
 import TopBanner from "../../lib/topBanner";
 import inputPriceFormat from "../../prjFunction/commaFunction";
 
-//외부 라이브러리 cdbreact 호출
+/**외부 라이브러리 cdbreact 호출 */
 const cdbreact = require("cdbreact");
 
-//충전하기 버튼 눌렀을 때 실행되는 함수
+/**
+ * @param plus string
+ * @param ref React.RefObject
+ * @return Ajax 요청 실행되는 함수, 실패시 useRef로 자동 포커스 됨*/
 const submit = (plus: string, ref: React.RefObject<HTMLInputElement>) => {
     if (plus === "") {
         alert("충전액을 입력해주세요.");
@@ -15,21 +18,22 @@ const submit = (plus: string, ref: React.RefObject<HTMLInputElement>) => {
     }
 };
 
-//함수 컴포넌트 시작
+/**
+ * @details 머니 충전 페이지 JSX
+ */
 const MoneyCharge = () => {
     const [charge, setCharge] = useState(""); //머니 잔액
     const [plus, setPlus] = useState(""); //머니 충전액
     const inputBox = useRef<HTMLInputElement>(null); // 머니 충전액 ref
     const [total, setTotal] = useState(""); //충전 결과액
 
-    const { CDBTable, CDBTableHeader, CDBTableBody, CDBContainer } = cdbreact; //외부 라이브러리 cdbreact hook 사용
+    /** 외부 라이브러리 cdbreact hook 사용 */
+    const { CDBTable, CDBTableHeader, CDBTableBody, CDBContainer } = cdbreact;
 
     console.log("머니충전 시작");
 
-    useEffect(() => {
-        // AJAX로 머니 잔액 불러와야 함, 가맹점 선택시 AJAX 연동해야 함.
-        // 성공, 실패, 로딩 중 처리
-    }, []);
+    /** 첫 랜더링 이후 AJAX로 머니 잔액 불러옴, 가맹점 선택시 AJAX 연동해야 함*/
+    useEffect(() => {}, []);
 
     return (
         <>
@@ -105,49 +109,6 @@ const MoneyCharge = () => {
                         </CDBTableBody>
                     </CDBTable>
                 </CDBContainer>
-                {/* <TransactionTable
-                    header={["계정명", "금액"]}
-                    data={[
-                        ["머니 잔 액", "0원"],
-                        ["머니 충전액", ""],
-                        ["충전 결과액", "20000"],
-                    ]}
-                    tableClassName={styles.transactionTable}
-                /> */}
-                {/* <div>
-                    <div className={styles.items}>
-                        <div>이름</div>
-                        <div>금액 </div>
-                    </div>
-                    <div className={styles.items}>
-                        <div>머니 잔 &nbsp;액</div>
-                        <div>
-                            <input
-                                type="text"
-                                readOnly
-                                value={charge}
-                                onChange={(e: any) => {
-                                    setCharge(e.target.value);
-                                }}
-                            />
-                        </div>
-                    </div>
-                    <div className={styles.items}>
-                        <div>머니 충전액</div>
-                        <div>
-                            <input style={{ display: "inline-block" }} type="number" /> <span>원</span>
-                        </div>
-                    </div>
-                    <div className={styles.items}>
-                        <div>충전 결과액</div>
-                        <div>
-                            <input type="text" readOnly={true} />
-                        </div>
-                    </div>
-                    <div className={styles.items} style={{ borderBottom: "none" }}>
-                        <button type="button">충전하기</button>
-                    </div>
-                </div> */}
             </article>
         </>
     );

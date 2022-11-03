@@ -1,12 +1,12 @@
-import { configureStore } from '@reduxjs/toolkit';
-import loginSlice from './loginSlice';
-import { persistReducer, FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER } from 'redux-persist';
-import storageSession from 'redux-persist/lib/storage/session';
+import { configureStore } from "@reduxjs/toolkit";
+import loginSlice from "./loginSlice";
+import { persistReducer, FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER } from "redux-persist";
+import storageSession from "redux-persist/lib/storage/session";
 
 const persistConfig = {
-    key: 'root',
+    key: "root",
     version: 1,
-    //storage: storage(local), storageSession(session), electronstorage(추가 설치 필요)
+    //storage 종류 storage(local), storageSession(session), electronstorage(추가 설치 필요)
     storage: storageSession,
 };
 
@@ -15,7 +15,8 @@ const persistedReducer = persistReducer(persistConfig, loginSlice.reducer);
 
 const store = configureStore({
     reducer: persistedReducer,
-    //알아봐야함
+
+    //reducer실행전 행동 지정할 수 있음
     middleware: (getDefaultMiddleware) =>
         getDefaultMiddleware({
             serializableCheck: {

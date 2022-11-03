@@ -7,12 +7,16 @@ import SignUp from "./component/signUp/signUp";
 import MoneyCharge from "./component/service/MoneyCharge";
 import Payment from "./component/service/Payment";
 import Transaction from "./component/service/Transaction";
-import Test from "./component/test";
+import Error from "./component/Loding_Error/Error";
+import Loding from "./component/Loding_Error/Loding";
 
 const EditMemberInfo = React.lazy(() => import("./component/Member/EditMemberInfo"));
+
+/**월별 머니 충전액, 월별 머니 결제액을 차트로 보여줍니다. */
 const Main = React.lazy(() => import("./component/Main"));
 
 const App: React.FC = () => {
+    /** @retrun redux에 저장된 값 호출 */
     let loginCheck = useSelector((state: any) => {
         return state?.value;
     });
@@ -23,8 +27,7 @@ const App: React.FC = () => {
                 <Routes>
                     <Route path="/" element={<Login />} />
                     <Route path="/signUp" element={<SignUp />} />
-                    <Route path="/main/test" element={<Test />}></Route>
-                    <Route path="*" element={<div>로그인이 필요한 서비스입니다.</div>} />
+                    <Route path="*" element={<Error />} />
                 </Routes>
             </BrowserRouter>
         );
@@ -38,7 +41,7 @@ const App: React.FC = () => {
                     <Route
                         path="/main/member"
                         element={
-                            <Suspense fallback={<div>메인 로딩중입니다.</div>}>
+                            <Suspense fallback={<Loding />}>
                                 <Main />
                             </Suspense>
                         }
@@ -46,7 +49,7 @@ const App: React.FC = () => {
                     <Route
                         path="/main/editMemberInfo"
                         element={
-                            <Suspense fallback={<div>회원정보 로딩중입니다.</div>}>
+                            <Suspense fallback={<Loding />}>
                                 <EditMemberInfo />
                             </Suspense>
                         }

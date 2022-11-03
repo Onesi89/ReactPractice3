@@ -1,6 +1,14 @@
 import React from "react";
 
-const TopBanner = (props: any) => {
+type TopBannerProps = {
+    children: React.ReactNode;
+};
+
+/**
+ * @param children JSX
+ * @returns Top 배너 / 계층형 메뉴 출력
+ */
+const TopBanner: React.FC<TopBannerProps> = (children) => {
     return (
         <div
             style={{
@@ -11,7 +19,7 @@ const TopBanner = (props: any) => {
                 paddingLeft: "10px",
                 boxShadow: "rgba(0, 0, 0, 0.24) 0px 1px 3px",
             }}
-            {...props}
+            {...children}
         ></div>
     );
 };

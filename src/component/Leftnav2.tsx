@@ -14,14 +14,16 @@ import { Link, Outlet } from "react-router-dom";
 const Leftnav2 = () => {
     console.log("Leftnav2 로딩 시작");
 
-    // 사용안함 const { collapsed, collapseSidebar } = useProSidebar();
-    const [collapsed, setCollapsed] = useState(false);
+    const [collapsed, setCollapsed] = useState<boolean>(false);
 
     const [toggleValue, setToggleValue] = useState({
         toggle: true,
         left: "320px",
     });
 
+    /**
+     * 사이드 토글 숨길시 Outlet과 magin 어느정도인지 정함
+     */
     const leftNavToggle = useCallback((collapsed: boolean, setToggleValue: any) => {
         console.log("Leftnav2 useCallback 시작");
         let size = { left: "320px" };

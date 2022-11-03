@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import styles from "../../css/countrycode.module.css";
-import useCustomRef from "../../lib/useCustomRef";
-import ShowInput from "../../prjFunction/showInput";
+import useCustomRef from "../../prjFunction/useCustomRef";
+import ShowInput from "../../lib/showInput";
 
 type CustomSelectBoxProps = {
     dataList?: string[];
